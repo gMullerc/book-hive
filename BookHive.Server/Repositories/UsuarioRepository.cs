@@ -1,0 +1,32 @@
+
+using BookHive.Server.Repositories.Interfaces;
+using BookHive.Server.Controllers;
+using BookHive.Server.Models;
+
+namespace BookHive.Server.Repositories
+{
+    public class UsuarioRepository : IUsuarioRepository
+    {
+        private readonly AppDbContext _context;
+
+        public UsuarioRepository(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public int CadastrarUsuario(Usuario usuario)
+        {
+            _context.Usuario.Add(usuario);
+            return _context.SaveChanges();
+        }
+        public Usuario? FindByEmail(string email)
+        {
+            return _context.Usuario.FirstOrDefault(usuario => usuario.Email == email);
+        }
+
+        public Usuario? FindByNomeUsuario(string nomeUsuario)
+        {
+            return _context.Usuario.FirstOrDefault(usuario => usuario.NomeUsuario == nomeUsuario);
+        }
+    }
+}

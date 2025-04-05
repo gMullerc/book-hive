@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "bookhive.client", "bookhive.client\bookhive.client.esproj", "{3CED8111-578F-FFA4-8312-2FA68260CD6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookHive.Server", "BookHive.Server\BookHive.Server.csproj", "{BBC53617-8A1B-46FB-8CE8-826391B6E71F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CED8111-578F-FFA4-8312-2FA68260CD6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CED8111-578F-FFA4-8312-2FA68260CD6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CED8111-578F-FFA4-8312-2FA68260CD6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CED8111-578F-FFA4-8312-2FA68260CD6F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{BBC53617-8A1B-46FB-8CE8-826391B6E71F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC53617-8A1B-46FB-8CE8-826391B6E71F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC53617-8A1B-46FB-8CE8-826391B6E71F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC53617-8A1B-46FB-8CE8-826391B6E71F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A86ED23-6755-49FC-8ED5-27961B4CE9C7}
+	EndGlobalSection
+EndGlobal

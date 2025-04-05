@@ -1,0 +1,24 @@
+{
+  "Version": 1,
+  "Hash": "LJbrQAfz7TXb5hjqulBeYBwoBOMEzrY82cVdRMF+lkU=",
+  "Source": "BookHive.Server",
+  "BasePath": "_content/BookHive.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\uninove-dev\\projects\\BookHive\\bookhive.client\\bookhive.client.esproj",
+      "Version": 2,
+      "Source": "bookhive.client",
+      "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

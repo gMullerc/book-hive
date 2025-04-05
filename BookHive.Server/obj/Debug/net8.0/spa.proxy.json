@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:50253",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\uninove-dev\\projects\\BookHive\\BookHive.Server\\..\\bookhive.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}
