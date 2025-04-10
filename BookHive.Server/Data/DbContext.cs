@@ -1,7 +1,4 @@
-using BookHive.Server.Dtos;
 using BookHive.Server.Models;
-using BookHive.Server.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookHive.Server.Controllers
@@ -13,5 +10,7 @@ namespace BookHive.Server.Controllers
 
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
+
+        public DbSet<Endereco> Endereco { get; set; }
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BookHive.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49ee2a3d98d99965c256fe669e68bf012b931e60")]
 [assembly: System.Reflection.AssemblyProductAttribute("BookHive.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BookHive.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

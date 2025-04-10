@@ -16,8 +16,8 @@ namespace BookHive.Server.Controllers
             _usuarioService = usuarioService;
         }
 
-        [HttpPost("cadastro")]
-        public IActionResult cadastrarUsuario(UsuarioDto usuarioDto) {
+        [HttpPost("cadastrar")]
+        public IActionResult CadastrarUsuario(UsuarioDto usuarioDto) {
 
             int idRetornado = _usuarioService.CadastrarUsuario(usuarioDto);
 
@@ -25,6 +25,12 @@ namespace BookHive.Server.Controllers
                 mensagem = "Usuário cadastrado com sucesso",
                 dataHora = DateTime.UtcNow
             });
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult BuscarUsuarioPorId([FromRoute] int id)
+        {
+            return Ok(_usuarioService.BuscarUsuarioPorId(id));
         }
 
         [HttpPost("login")]

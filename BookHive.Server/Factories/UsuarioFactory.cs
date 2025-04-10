@@ -12,8 +12,17 @@ namespace BookHive.Server.Factories
                 NomeUsuario = dto.NomeUsuario,
                 Email = dto.Email,
                 Senha = dto.Senha,
-                Pessoa = PessoaFactory.Criar(dto.Pessoa)
+                Pessoa = PessoaFactory.converterDtoParaModel(dto.Pessoa)
             };
+        }
+
+        public static UsuarioConsultaDto converterModelParaDto(Usuario usuario)
+        {
+            return new UsuarioConsultaDto(
+                usuario.NomeUsuario,
+                usuario.Email,
+                PessoaFactory.converterModelParaDto(usuario.Pessoa)
+             );
         }
     }
 }

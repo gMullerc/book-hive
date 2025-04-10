@@ -9,6 +9,7 @@ namespace BookHive.Server.Models
         public string Nome { get; set; } = string.Empty;
         public string Cpf { get; set; } = string.Empty;
         public string Rg { get; set; } = string.Empty;
-        public Endereco Endereco { get; set; } = new Endereco();
+        public required Endereco Endereco { get; set; }
+        public required Contato Contato { get; set; } 
     }
 }
