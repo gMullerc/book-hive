@@ -1,0 +1,143 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\uninove-dev\\teste\\book-hive\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.client\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|solutionrelative:bookhive.client\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.client\\src\\hooks\\useget.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|solutionrelative:bookhive.client\\src\\hooks\\useget.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.client\\vite.config.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|solutionrelative:bookhive.client\\vite.config.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.client\\public\\vite.svg||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|solutionrelative:bookhive.client\\public\\vite.svg||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.client\\src\\main.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|solutionrelative:bookhive.client\\src\\main.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.client\\tsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|solutionrelative:bookhive.client\\tsconfig.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.client\\eslint.config.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{3CED8111-578F-FFA4-8312-2FA68260CD6F}|bookhive.client\\bookhive.client.esproj|solutionrelative:bookhive.client\\eslint.config.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "useGet.tsx",
+              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\src\\hooks\\useGet.tsx",
+              "RelativeDocumentMoniker": "bookhive.client\\src\\hooks\\useGet.tsx",
+              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\src\\hooks\\useGet.tsx",
+              "RelativeToolTip": "bookhive.client\\src\\hooks\\useGet.tsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-04-10T00:47:18.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "vite.svg",
+              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\public\\vite.svg",
+              "RelativeDocumentMoniker": "bookhive.client\\public\\vite.svg",
+              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\public\\vite.svg",
+              "RelativeToolTip": "bookhive.client\\public\\vite.svg",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKMSURBVDhPjZNLSFRhFMd/3507M/dKPsacsYelWGZZFFJRkdSmNrUoatMiKggSN2YFEUX3MvQiiBYWtFAyggoXPSGyhQuhFrXQFr7GMFOowcZMUO9MM3pPi9Eao6gf/Bcfh3PO/5yPo8jAsqxI5vtvKKXuhMPhK4jInIBlWRH5Bw0NDYOWZUVs264B0DILKEUXCCIpZOIi7uetpHpCxN8GiffU4rrThEIhXzgcXiEidbZtH/5ZQKTV\u002B72oItjSYfG5vxwneoX2/iW80dvxb4ji9D4BIBAIeBsbG4fSOXJWzSR7qpt9D\u002BvWndpTlNXL2HCQ28PXaIuVEB2Dmsp8DiZqyN35FAFiw19IJpPcbmrq0wCq7\u002BvHd5Y\u002B2rMy5y3OcBXmqtccq9rB/uUFKI/GzfZRPhRdBhEQIRgKUlxSAoAm0uqtWNB5Yu\u002Bier5\u002BWOoWbnxAwAwQzDao3lLIobX5ePxemiImroCIzFm\u002BztT7/CPLzi8ej\u002BVxdeyu1nJjgMR3FwDl0fD4dJRHozuWACStjM/TGDlZ50tNqHuxejo\u002B\u002BZPL8wwqCvxUFPhZFfBSbIBMJti0wJjpDpJRQXfjzr6uj9u\u002BtYysCWijA4OPqzeXpVLJtE010zS9cZDM1DTa9ASLmoaOnh4cEYaySsoa30T5Mp5kPD7Ni\u002B5Rtt7qofzqO553jqQHmHExi5p8RcRNsb6y7VWtnm1ecjUdcdM7QClwhQPl8zi3o\u002BiXdREMMwvbtvv0KYfmRJSBtvlVY93O6ujLlc8WdsYcdE1RmutlV3kO20tzcXFRohBFerQ/ccE6c11EJB53xIk7EndmNSnObxIRsSwrMucWUvh2AxiGiWmYGOassjB/0yxzzPzvOWfyAyvlXYiiBFoWAAAAAElFTkSuQmCC",
+              "WhenOpened": "2025-04-10T00:40:03.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "vite.config.ts",
+              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\vite.config.ts",
+              "RelativeDocumentMoniker": "bookhive.client\\vite.config.ts",
+              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\vite.config.ts",
+              "RelativeToolTip": "bookhive.client\\vite.config.ts",
+              "ViewState": "AgIAABYAAAAAAAAAAAAYwDEAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-04-10T00:38:51.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.tsx",
+              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\src\\App.tsx",
+              "RelativeDocumentMoniker": "bookhive.client\\src\\App.tsx",
+              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\src\\App.tsx",
+              "RelativeToolTip": "bookhive.client\\src\\App.tsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-04-10T00:31:40.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "tsconfig.json",
+              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\tsconfig.json",
+              "RelativeDocumentMoniker": "bookhive.client\\tsconfig.json",
+              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\tsconfig.json",
+              "RelativeToolTip": "bookhive.client\\tsconfig.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-10T00:30:46.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "main.tsx",
+              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\src\\main.tsx",
+              "RelativeDocumentMoniker": "bookhive.client\\src\\main.tsx",
+              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\src\\main.tsx",
+              "RelativeToolTip": "bookhive.client\\src\\main.tsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-04-10T00:29:11.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "eslint.config.ts",
+              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\eslint.config.ts",
+              "RelativeDocumentMoniker": "bookhive.client\\eslint.config.ts",
+              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\bookhive.client\\eslint.config.ts",
+              "RelativeToolTip": "bookhive.client\\eslint.config.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-04-10T00:28:49.48Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

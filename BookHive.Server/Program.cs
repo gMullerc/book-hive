@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Adiciona serviços MVC
 builder.Services.AddControllers();
+
 builder.Services.AddServicesByConvention(typeof(Program).Assembly);
 builder.Services.AddRepositoriesByConvention(typeof(Program).Assembly);
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -23,7 +24,6 @@ var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseDefaultFiles();
 app.UseStaticFiles();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

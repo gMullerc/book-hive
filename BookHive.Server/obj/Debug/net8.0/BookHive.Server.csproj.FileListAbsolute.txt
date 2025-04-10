@@ -106,4 +106,3 @@ C:\uninove-dev\teste\book-hive\BookHive.Server\obj\Debug\net8.0\refint\BookHive.
 C:\uninove-dev\teste\book-hive\BookHive.Server\obj\Debug\net8.0\BookHive.Server.pdb
 C:\uninove-dev\teste\book-hive\BookHive.Server\obj\Debug\net8.0\BookHive.Server.genruntimeconfig.cache
 C:\uninove-dev\teste\book-hive\BookHive.Server\obj\Debug\net8.0\ref\BookHive.Server.dll
-C:\uninove-dev\teste\book-hive\BookHive.Server\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
