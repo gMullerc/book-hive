@@ -2,6 +2,7 @@
 using BookHive.Server.Repositories.Interfaces;
 using BookHive.Server.Controllers;
 using BookHive.Server.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookHive.Server.Repositories
 {
@@ -27,6 +28,15 @@ namespace BookHive.Server.Repositories
         public Usuario? FindByNomeUsuario(string nomeUsuario)
         {
             return _context.Usuario.FirstOrDefault(usuario => usuario.NomeUsuario == nomeUsuario);
+        }
+
+        public Usuario? FindUsuarioById(int id)
+        {
+            return _context.Usuario
+                .Include(p => p.Pessoa)
+                .Include(p => p.Pessoa.Endereco)
+                .Include(p => p.Pessoa.Contato)
+                .FirstOrDefault(usuario => usuario.Id == id);
         }
     }
 }

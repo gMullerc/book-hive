@@ -5,7 +5,7 @@ namespace BookHive.Server.Factories
 {
     public static class EnderecoFactory
     {
-        public static Endereco Criar(EnderecoDto dto)
+        public static Endereco converterDtoParaModel(EnderecoDto dto)
         {
             return new Endereco
             {
@@ -17,5 +17,20 @@ namespace BookHive.Server.Factories
                 Cep = dto.Cep
             };
         }
+
+        public static EnderecoDto converterModelParaDto(Endereco endereco)
+        {
+            return new EnderecoDto(
+                endereco.Id,
+                endereco.Logradouro,
+                endereco.Numero,
+                endereco.Bairro,
+                endereco.Cidade,
+                endereco.Estado,
+                endereco.Cep
+            );
+
+        }
+
     }
 }

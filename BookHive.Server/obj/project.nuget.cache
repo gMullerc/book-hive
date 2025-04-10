@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/DctVvvVeSg=",
+  "dgSpecHash": "4g49UncuxC4=",
   "success": true,
-  "projectFilePath": "C:\\uninove-dev\\projects\\BookHive\\BookHive.Server\\BookHive.Server.csproj",
+  "projectFilePath": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\BookHive.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\TheGu\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\8.0.14\\microsoft.aspnetcore.spaproxy.8.0.14.nupkg.sha512",
     "C:\\Users\\TheGu\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.1\\microsoft.entityframeworkcore.9.0.1.nupkg.sha512",

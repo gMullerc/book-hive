@@ -1,1 +1,2 @@
 C:\uninove-dev\projects\BookHive\bookhive.client\obj\Debug\bookhive.client.esproj.CoreCompileInputs.cache
+C:\uninove-dev\teste\book-hive\bookhive.client\obj\Debug\bookhive.client.esproj.CoreCompileInputs.cache
