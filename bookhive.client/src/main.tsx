@@ -1,16 +1,23 @@
-import { createRoot } from 'react-dom/client';
-
-import { StrictMode } from "react"; 
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
+import { ThemeProvider } from '@emotion/react';
+import { theme } from './core/themes/themes';
+import { CssBaseline } from '@mui/material';
+import { LoadingProvider } from './core/contexts/LoadingContext';
+import { GlobalLoader } from './core/components/GlobalLoader';
 
-const rootElement = document.getElementById('root');
-
-if (!rootElement) {
-    throw new Error("Elemento #root n�o encontrado no HTML.");
-}
-
-createRoot(rootElement).render(
-    <StrictMode>
-        <App />
-    </StrictMode>,
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <BrowserRouter>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <LoadingProvider>
+                <App />
+                <GlobalLoader/>
+            </LoadingProvider>
+        </ThemeProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );
