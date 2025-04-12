@@ -1,6 +1,4 @@
-import { json } from "stream/consumers";
-import { Usuario } from "../../../core/@types/Usuario";
-import { stringify } from "querystring";
+import { Usuario } from "../../modules/login/@types/Usuario";
 
 export const guardarInformacoesUsuario = (usuario: Usuario) => {
     if (!usuario) return;

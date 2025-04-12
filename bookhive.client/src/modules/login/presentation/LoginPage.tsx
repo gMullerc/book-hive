@@ -1,19 +1,19 @@
-import { Grid, Paper, Typography, Box } from "@mui/material";
+import { Grid, Paper, Typography, Box, Button, Link } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../validations/loginSchema";
-import { LoginForm } from "../../../core/@types/LoginForm";
 import { CustomTextField } from "../../../core/components/CustomTextField";
 import { CustomActionButton } from "../../../core/components/CustomActionButton";
 import { usePost } from "../../../core/hooks/usePost";
-import { Usuario } from "../../../core/@types/Usuario";
-import { guardarInformacoesUsuario } from "../usecases/loginUsecase";
+import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { LoginForm } from "../@types/form/LoginForm";
+import { Usuario } from "../@types/Usuario";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
-    const { post, data} = usePost<LoginForm, Usuario>('/api/usuario/login');
+    const { post, data } = usePost<LoginForm, Usuario>('/api/usuario/login');
 
 
     useEffect(() => {
@@ -45,7 +45,7 @@ export const LoginPage = () => {
             >
                 <FormProvider {...methods}>
                     <form onSubmit={methods.handleSubmit(onSubmit)} style={{ height: '100%' }}>
-                        <Grid container direction="column" justifyContent="space-between" sx={{ height: '100%' }}>
+                        <Grid container direction="column" gap={10} sx={{ height: '100%' }}>
 
                             <Typography variant="h5" align="center" color="primary">
                                 BookHive
@@ -55,12 +55,17 @@ export const LoginPage = () => {
                                 <CustomTextField name="email" label="E-mail" />
                                 <CustomTextField name="senha" label="Senha" type="password" />
                                 <CustomActionButton type="submit">Entrar</CustomActionButton>
+                                <Box display="flex" justifyContent="center">
+                                    <Typography noWrap color="textPrimary">
+                                        {"Não tem uma conta? "}
+                                        <Link sx={{cursor: "pointer"}} onClick={() => {
+                                           navigate("/cadastro")
+                                        }} >
+                                            Clique aqui
+                                        </Link>
+                                    </Typography>
+                                </Box>
                             </Box>
-
-                            <Typography align="center" variant="body2" sx={{ mt: 2 }}>
-                                Não tem conta? Cadastre-se
-                            </Typography>
-
                         </Grid>
                     </form>
                 </FormProvider>

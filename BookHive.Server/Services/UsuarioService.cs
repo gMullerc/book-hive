@@ -11,10 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace BookHive.Server.Services
 {
     public interface IUsuarioService {
-        public int CadastrarUsuario(UsuarioDto usuarioDTO);
+        public UsuarioConsultaDto CadastrarUsuario(UsuarioDto usuarioDTO);
         public UsuarioConsultaDto BuscarUsuarioPorId(int id);
 
-        public UsuarioLogadoDTO ValidarLogin(LoginDTO usuarioDto);
+        public UsuarioConsultaDto ValidarLogin(LoginDTO usuarioDto);
     }
 
     public class UsuarioService : IUsuarioService
@@ -39,7 +39,7 @@ namespace BookHive.Server.Services
 
         }
 
-        public int CadastrarUsuario(UsuarioDto usuarioDTO)
+        public UsuarioConsultaDto CadastrarUsuario(UsuarioDto usuarioDTO)
         {
             Usuario? usuario = _usuarioRepository.FindByNomeUsuario(usuarioDTO.NomeUsuario);
 
@@ -64,24 +64,19 @@ namespace BookHive.Server.Services
 
             Usuario usuarioConvertido = UsuarioFactory.converterDtoParaModel(usuarioDTO);
 
-            return _usuarioRepository.CadastrarUsuario(usuarioConvertido);
+            int idUsuario = _usuarioRepository.CadastrarUsuario(usuarioConvertido);
 
+            return BuscarUsuarioPorId(idUsuario);
         }
 
-        public UsuarioLogadoDTO ValidarLogin(LoginDTO usuarioDto)
+        public UsuarioConsultaDto ValidarLogin(LoginDTO usuarioDto)
         {
             var usuario = _usuarioRepository.FindByEmail(usuarioDto.Email);
 
             if (usuario == null || usuario.Senha != usuarioDto.Senha)
                 throw new UnauthorizedException("Usuário ou senha inválido");
 
-            return new UsuarioLogadoDTO
-            {
-                Id = usuario.Id,
-                NomeUsuario = usuario.NomeUsuario,
-                Email = usuario.Email,
-                AutenticadoEm = DateTime.UtcNow
-            };
+            return BuscarUsuarioPorId(usuario.Id);
         }
 
     }

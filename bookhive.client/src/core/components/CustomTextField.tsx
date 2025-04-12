@@ -1,15 +1,20 @@
 import { TextField, TextFieldProps } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
+import get from 'lodash/get';
 
 type CustomTextFieldProps = {
   name: string;
   label: string;
+  required?: boolean;
+  mask?: (value: string) => string;
+  maxLength?: number;
+  minLength?: number;
 } & TextFieldProps;
 
-export const CustomTextField = ({ name, label, ...rest }: CustomTextFieldProps) => {
+export const CustomTextField = ({ name, label, required = false, mask, maxLength, minLength, ...rest }: CustomTextFieldProps) => {
   const { control, formState: { errors } } = useFormContext();
 
-  const fieldError = errors[name]?.message as string | undefined;
+  const fieldError = get(errors, name)?.message as string | undefined;
 
   return (
     <Controller
@@ -18,10 +23,15 @@ export const CustomTextField = ({ name, label, ...rest }: CustomTextFieldProps) 
       render={({ field }) => (
         <TextField
           {...field}
-          label={label}
+          label={`${label}${required ? "*" : ""}`}
           fullWidth
           error={!!fieldError}
           helperText={fieldError}
+          slotProps={{ htmlInput: { 'maxLength': maxLength, 'minLength': minLength } }}
+          onChange={(e) => {
+            const maskedValue = mask ? mask(e.target.value) : e.target.value;
+            field.onChange(maskedValue);
+          }}
           {...rest}
         />
       )}

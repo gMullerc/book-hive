@@ -15,12 +15,15 @@
     <PackageJsonDependenciesMuiIconsMaterial Condition="$(PackageJsonDependenciesMuiIconsMaterial) == ''">^7.0.2</PackageJsonDependenciesMuiIconsMaterial>
     <PackageJsonDependenciesMuiMaterial Condition="$(PackageJsonDependenciesMuiMaterial) == ''">^7.0.2</PackageJsonDependenciesMuiMaterial>
     <PackageJsonDependenciesAxios Condition="$(PackageJsonDependenciesAxios) == ''">^1.8.4</PackageJsonDependenciesAxios>
+    <PackageJsonDependenciesImask Condition="$(PackageJsonDependenciesImask) == ''">^7.6.1</PackageJsonDependenciesImask>
+    <PackageJsonDependenciesLodash Condition="$(PackageJsonDependenciesLodash) == ''">^4.17.21</PackageJsonDependenciesLodash>
     <PackageJsonDependenciesReact Condition="$(PackageJsonDependenciesReact) == ''">^19.0.0</PackageJsonDependenciesReact>
     <PackageJsonDependenciesReactDom Condition="$(PackageJsonDependenciesReactDom) == ''">^19.0.0</PackageJsonDependenciesReactDom>
     <PackageJsonDependenciesReactRouterDom Condition="$(PackageJsonDependenciesReactRouterDom) == ''">^7.5.0</PackageJsonDependenciesReactRouterDom>
     <PackageJsonDependenciesTypescript Condition="$(PackageJsonDependenciesTypescript) == ''">^5.8.3</PackageJsonDependenciesTypescript>
     <PackageJsonDependenciesYup Condition="$(PackageJsonDependenciesYup) == ''">^1.6.1</PackageJsonDependenciesYup>
     <PackageJsonDevdependenciesEslintJs Condition="$(PackageJsonDevdependenciesEslintJs) == ''">^9.21.0</PackageJsonDevdependenciesEslintJs>
+    <PackageJsonDevdependenciesTypesLodash Condition="$(PackageJsonDevdependenciesTypesLodash) == ''">^4.17.16</PackageJsonDevdependenciesTypesLodash>
     <PackageJsonDevdependenciesTypesNode Condition="$(PackageJsonDevdependenciesTypesNode) == ''">^22.14.0</PackageJsonDevdependenciesTypesNode>
     <PackageJsonDevdependenciesTypesReact Condition="$(PackageJsonDevdependenciesTypesReact) == ''">^19.1.0</PackageJsonDevdependenciesTypesReact>
     <PackageJsonDevdependenciesTypesReactDom Condition="$(PackageJsonDevdependenciesTypesReactDom) == ''">^19.1.2</PackageJsonDevdependenciesTypesReactDom>

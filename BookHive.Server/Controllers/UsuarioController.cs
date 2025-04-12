@@ -18,26 +18,17 @@ namespace BookHive.Server.Controllers
 
         [HttpPost("cadastrar")]
         public IActionResult CadastrarUsuario(UsuarioDto usuarioDto) {
-
-            int idRetornado = _usuarioService.CadastrarUsuario(usuarioDto);
-
-            return Ok(new{
-                mensagem = "Usuário cadastrado com sucesso",
-                dataHora = DateTime.UtcNow
-            });
+            return Ok(_usuarioService.CadastrarUsuario(usuarioDto));
         }
 
         [HttpGet("{id}")]
-        public IActionResult BuscarUsuarioPorId([FromRoute] int id)
-        {
+        public IActionResult BuscarUsuarioPorId([FromRoute] int id) {
             return Ok(_usuarioService.BuscarUsuarioPorId(id));
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginDTO usuarioDto)
-        {
-            var usuarioLogado = _usuarioService.ValidarLogin(usuarioDto);
-            return Ok(usuarioLogado);
+        public IActionResult Login(LoginDTO usuarioDto) {
+            return Ok(_usuarioService.ValidarLogin(usuarioDto));
         }
     }
 }
