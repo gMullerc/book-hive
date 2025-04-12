@@ -27,7 +27,13 @@ export const CustomTextField = ({ name, label, required = false, mask, maxLength
           fullWidth
           error={!!fieldError}
           helperText={fieldError}
-          slotProps={{ htmlInput: { 'maxLength': maxLength, 'minLength': minLength } }}
+          size='small'
+          slotProps={{
+            htmlInput: {
+              'maxLength': maxLength,
+              'minLength': minLength
+            }
+          }}
           onChange={(e) => {
             const maskedValue = mask ? mask(e.target.value) : e.target.value;
             field.onChange(maskedValue);

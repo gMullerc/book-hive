@@ -27,7 +27,7 @@ namespace BookHive.Server.Services
             Pessoa? pessoa = _pessoaRepository.BuscarPessoaPorId(pessoaDto.Id);
 
             if (pessoa is not Pessoa pessoaEncontrada)
-                throw new BadRequestException("Pessoa não encontrada.");
+                throw new BadRequestException("Pessoa nï¿½o encontrada.");
 
             AtualizarPessoaComDto(pessoa, pessoaDto);
 
@@ -64,28 +64,5 @@ namespace BookHive.Server.Services
                 contato.Email = contatoDto.Email;
             }
         }
-        //public int CadastrarUsuario(UsuarioDto usuarioDTO)
-        //{
-        //    Usuario? usuario = _usuarioRepository.FindByNomeUsuario(usuarioDTO.NomeUsuario);
-
-        //    if (usuario != null)
-        //    {
-        //        throw new BadRequestException("Nome de usuário ja utilizado");
-        //    }
-
-        //    usuario = _usuarioRepository.FindByEmail(usuarioDTO.Email);
-
-        //    if (usuario != null)
-        //    {
-        //        throw new BadRequestException("E-mail ja utilizado");
-        //    }
-
-        //    Usuario usuarioConvertido = UsuarioFactory.converterDtoParaModel(usuarioDTO);
-
-        //    return _usuarioRepository.CadastrarUsuario(usuarioConvertido);
-
-        //}
-
     }
-
 }

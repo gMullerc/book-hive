@@ -48,7 +48,7 @@ export const CadastroPage = () => {
                                 <InformacoesPessoais />
                                 <Divider orientation="horizontal" flexItem />
                                 <InformacoesEndereco />
-                                <CustomActionButton type="submit">Entrar</CustomActionButton>
+                                <CustomActionButton type="submit">Cadastrar</CustomActionButton>
                             </Grid>
                         </form>
                     </FormProvider>

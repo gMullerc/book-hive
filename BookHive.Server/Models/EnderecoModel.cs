@@ -5,11 +5,11 @@ namespace BookHive.Server.Models
     public class Endereco
     {
         public int Id { get; set; }
-        public string Logradouro { get; set; }
-        public string Numero { get; set; }
-        public string Bairro { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
-        public string Cep { get; set; }
+        public required string Logradouro { get; set; }
+        public required string Numero { get; set; }
+        public required string Bairro { get; set; }
+        public required string Cidade { get; set; }
+        public required string Estado { get; set; }
+        public required string Cep { get; set; }
     }
 }
