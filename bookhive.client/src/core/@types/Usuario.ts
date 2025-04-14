@@ -1,4 +1,4 @@
-type Endereco = {
+export type Endereco = {
     logradouro: string;
     numero: string;
     bairro: string;
@@ -7,10 +7,10 @@ type Endereco = {
     cep: string;
 };
 
-type Contato = {
-    telefone: string;
+export type Contato = {
     celular: string;
     email: string;
+    telefone?: string;
 };
 
 type Pessoa = {
@@ -22,6 +22,7 @@ type Pessoa = {
 };
 
 export type Usuario = {
+    id?: number;
     nomeUsuario: string;
     email: string;
     pessoa: Pessoa;

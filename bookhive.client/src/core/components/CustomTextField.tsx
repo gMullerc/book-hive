@@ -28,12 +28,13 @@ export const CustomTextField = ({ name, label, required = false, mask, maxLength
           error={!!fieldError}
           helperText={fieldError}
           size='small'
-          slotProps={{
+          slotProps={{ 
             htmlInput: {
               'maxLength': maxLength,
               'minLength': minLength
             }
           }}
+          value={field.value ?? ''}
           onChange={(e) => {
             const maskedValue = mask ? mask(e.target.value) : e.target.value;
             field.onChange(maskedValue);
