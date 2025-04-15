@@ -1,5 +1,6 @@
 using BookHive.Server.Models;
 using BookHive.Server.Dtos;
+using Microsoft.AspNetCore.SignalR;
 
 namespace BookHive.Server.Factories
 {
@@ -19,6 +20,7 @@ namespace BookHive.Server.Factories
         public static UsuarioConsultaDto converterModelParaDto(Usuario usuario)
         {
             return new UsuarioConsultaDto(
+                usuario.Id,
                 usuario.NomeUsuario,
                 usuario.Email,
                 PessoaFactory.converterModelParaDto(usuario.Pessoa)

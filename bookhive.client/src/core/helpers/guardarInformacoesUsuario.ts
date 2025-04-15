@@ -1,4 +1,4 @@
-import { Usuario } from "../../modules/login/@types/Usuario";
+import { Usuario } from "../@types/Usuario";
 
 export const guardarInformacoesUsuario = (usuario: Usuario) => {
     if (!usuario) return;

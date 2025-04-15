@@ -8,13 +8,18 @@ import { usePost } from "../../../core/hooks/usePost";
 import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginForm } from "../@types/form/LoginForm";
-import { Usuario } from "../@types/Usuario";
+import { LoginForm } from "../@types/form/LoginForm"; 
+import { Usuario } from "../../../core/@types/Usuario";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
     const { post, data } = usePost<LoginForm, Usuario>('/api/usuario/login');
-
+    const methods = useForm<LoginForm>({
+        resolver: yupResolver(loginSchema),
+    });
+    const onSubmit = async (data: LoginForm) => {
+        post(data);
+    };
 
     useEffect(() => {
         if (data) {
@@ -23,14 +28,6 @@ export const LoginPage = () => {
         }
     }, [data]);
 
-
-    const methods = useForm<LoginForm>({
-        resolver: yupResolver(loginSchema),
-    });
-
-    const onSubmit = async (data: LoginForm) => {
-        post(data);
-    };
 
     return (
         <Grid
