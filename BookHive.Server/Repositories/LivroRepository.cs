@@ -19,5 +19,9 @@ namespace BookHive.Server.Repositories
             _context.Livro.Add(livro);
             _context.SaveChanges();
         }
+        public Livro BuscarPorIdLivro(int id)
+        {
+            return _context.Livro.Find(id);            
+        }
     }
 }
