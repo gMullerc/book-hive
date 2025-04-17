@@ -22,7 +22,7 @@ namespace BookHive.Server.Controllers
             
         }
 
-        [HttpPost("BuscarPorId")]
+        [HttpGet("BuscarPorId")]
         public LivroDto BuscarPorIdLivro([FromQuery] int id) { 
             var livro = _livroService.BuscarPorIdLivro(id);
             return livro;
