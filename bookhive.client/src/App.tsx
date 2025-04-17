@@ -23,7 +23,6 @@ export const App = () => {
         <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/cadastro" element={<CadastroPage />} />
-
             <Route path="/livros" element={
                 <DefaultLayout>
                     <>HOME</>

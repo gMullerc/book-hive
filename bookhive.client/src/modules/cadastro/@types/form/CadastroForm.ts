@@ -26,5 +26,3 @@ type EnderecoForm = {
     estado: string,
     cep: string,
 };
-
-

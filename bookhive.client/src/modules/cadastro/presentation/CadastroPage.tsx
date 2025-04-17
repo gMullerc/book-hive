@@ -8,12 +8,11 @@ import { InformacoesEndereco } from "../components/InformacoesEndereco";
 import { CadastroForm } from "../@types/form/CadastroForm";
 import { CustomActionButton } from "../../../core/components/CustomActionButton";
 import { usePost } from "../../../core/hooks/usePost";
-import { Usuario } from "../../login/@types/Usuario";
 import { useEffect } from "react";
 import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
 import { useNavigate } from "react-router-dom";
 import { limparFormularioCadastro } from "../helpers/limparFormularioCadastro";
- 
+import { Usuario } from "../../../core/@types/Usuario";
 
 export const CadastroPage = () => {
     const navigate = useNavigate();
@@ -29,7 +28,6 @@ export const CadastroPage = () => {
             navigate('/livros');
         }
     }, [data]);
-
 
     const onSubmit = async (data: CadastroForm) => post(limparFormularioCadastro(data));
 
