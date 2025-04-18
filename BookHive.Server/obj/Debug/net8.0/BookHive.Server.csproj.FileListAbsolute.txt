@@ -106,3 +106,11 @@ C:\uninove-dev\teste\book-hive\BookHive.Server\obj\Debug\net8.0\refint\BookHive.
 C:\uninove-dev\teste\book-hive\BookHive.Server\obj\Debug\net8.0\BookHive.Server.pdb
 C:\uninove-dev\teste\book-hive\BookHive.Server\obj\Debug\net8.0\BookHive.Server.genruntimeconfig.cache
 C:\uninove-dev\teste\book-hive\BookHive.Server\obj\Debug\net8.0\ref\BookHive.Server.dll
+C:\uninove-dev\teste\book-hive\BookHive.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\uninove-dev\teste\book-hive\BookHive.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\uninove-dev\teste\book-hive\BookHive.Server\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\uninove-dev\teste\book-hive\BookHive.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\uninove-dev\teste\book-hive\BookHive.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\uninove-dev\teste\book-hive\BookHive.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\uninove-dev\teste\book-hive\BookHive.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\uninove-dev\teste\book-hive\BookHive.Server\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

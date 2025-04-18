@@ -1,6 +1,10 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Principal;
 using BookHive.Server.Dtos;
 using BookHive.Server.Repositories.Interfaces;
 using BookHive.Server.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookHive.Server.Controllers
@@ -15,20 +19,22 @@ namespace BookHive.Server.Controllers
         {
             _usuarioService = usuarioService;
         }
-
+        [AllowAnonymous]
         [HttpPost("cadastrar")]
         public IActionResult CadastrarUsuario(UsuarioDto usuarioDto) {
             return Ok(_usuarioService.CadastrarUsuario(usuarioDto));
         }
 
-        [HttpGet("{id}")]
-        public IActionResult BuscarUsuarioPorId([FromRoute] int id) {
-            return Ok(_usuarioService.BuscarUsuarioPorId(id));
+        [HttpGet()]
+        [Authorize]
+        public IActionResult BuscarUsuarioPorId() {
+            return Ok(_usuarioService.BuscarUsuarioLogado(User.FindFirst(SecurityClaimTypes.NameId)?.Value));
         }
-
+        
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult Login(LoginDTO usuarioDto) {
-            return Ok(_usuarioService.ValidarLogin(usuarioDto));
+            return Ok(new { token = _usuarioService.ValidarLogin(usuarioDto)});
         }
     }
 }

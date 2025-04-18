@@ -1,51 +1,59 @@
-using BookHive.Server.Controllers;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using BookHive.Server.Dtos;
 using BookHive.Server.Exceptions;
 using BookHive.Server.Factories;
 using BookHive.Server.Models;
-using BookHive.Server.Repositories;
 using BookHive.Server.Repositories.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BookHive.Server.Services
 {
-    public interface IUsuarioService {
-        public UsuarioConsultaDto CadastrarUsuario(UsuarioDto usuarioDTO);
-        public UsuarioConsultaDto BuscarUsuarioPorId(int id);
-
-        public UsuarioConsultaDto ValidarLogin(LoginDTO usuarioDto);
+    public interface IUsuarioService
+    {
+        public string CadastrarUsuario(UsuarioDto usuarioDTO);
+        public UsuarioConsultaDto BuscarUsuarioLogado(string? id);
+        public string ValidarLogin(LoginDTO usuarioDto);
     }
 
     public class UsuarioService : IUsuarioService
     {
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IPessoaRepository _pessoaRepository;
+        private readonly IAuthService _authService;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository, IPessoaRepository pessoaRepository)
+        public UsuarioService(
+            IUsuarioRepository usuarioRepository,
+            IPessoaRepository pessoaRepository,
+            IAuthService authService)
         {
             _pessoaRepository = pessoaRepository;
             _usuarioRepository = usuarioRepository;
+            _authService = authService;
         }
 
-        public UsuarioConsultaDto BuscarUsuarioPorId(int id)
+        public UsuarioConsultaDto BuscarUsuarioLogado(string? id)
         {
-            Usuario? usuario = _usuarioRepository.FindUsuarioById(id);
+            if(id == null) throw new BadRequestException("ID n√£o encontrado.");
 
-            if(usuario == null) throw new BadRequestException("Usu·rio n„o encontrado.");
+            int idConvertido = int.Parse(id);
 
+            Usuario? usuario = _usuarioRepository.FindUsuarioById(idConvertido);
+
+            if (usuario == null) throw new BadRequestException("Usu√°rio n√£o encontrado.");
 
             return UsuarioFactory.converterModelParaDto(usuario);
-
         }
 
-        public UsuarioConsultaDto CadastrarUsuario(UsuarioDto usuarioDTO)
+        public string CadastrarUsuario(UsuarioDto usuarioDTO)
         {
             Usuario? usuario = _usuarioRepository.FindByNomeUsuario(usuarioDTO.NomeUsuario);
 
             if (usuario != null)
             {
-                throw new BadRequestException("Nome de usu·rio ja utilizado.");
+                throw new BadRequestException("Nome de usu√°rio ja utilizado.");
             }
 
             usuario = _usuarioRepository.FindByEmail(usuarioDTO.Email);
@@ -59,26 +67,23 @@ namespace BookHive.Server.Services
 
             if (pessoa != null)
             {
-                throw new BadRequestException("CPF j· cadastrado no sistema.");
+                throw new BadRequestException("CPF j√° cadastrado no sistema.");
             }
 
             Usuario usuarioConvertido = UsuarioFactory.converterDtoParaModel(usuarioDTO);
 
-            int idUsuario = _usuarioRepository.CadastrarUsuario(usuarioConvertido);
-
-            return BuscarUsuarioPorId(idUsuario);
+            return _authService.GerarJwtToken(usuarioConvertido);
         }
 
-        public UsuarioConsultaDto ValidarLogin(LoginDTO usuarioDto)
+        public string ValidarLogin(LoginDTO usuarioDto)
         {
             var usuario = _usuarioRepository.FindByEmail(usuarioDto.Email);
 
             if (usuario == null || usuario.Senha != usuarioDto.Senha)
-                throw new UnauthorizedException("Usu·rio ou senha inv·lido");
+                throw new UnauthorizedException("E-mail ou senha inv√°lido");
 
-            return BuscarUsuarioPorId(usuario.Id);
+            return _authService.GerarJwtToken(usuario);
         }
-
     }
 
 }
