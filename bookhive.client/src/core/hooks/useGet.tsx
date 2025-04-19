@@ -9,14 +9,22 @@ export function useGet<TResponse>(baseUrl: string) {
   const [data, setData] = useState<TResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const get = useCallback(async (id: string | number = ''): Promise<TResponse | null> => {
+  const get = useCallback(async (id: string | number = '', queryParams?: string): Promise<TResponse | null> => {
     setLoading(true);
     setError(null);
 
     try {
       const tokenLocal = recuperarToken();
 
-      const url = id ? `${baseUrl}/${id}` : baseUrl;
+      let url = "";
+
+      if(queryParams){
+        url = `${baseUrl}${queryParams}`;
+
+      }else{
+        url = id ? `${baseUrl}/${id}` : baseUrl;
+      }
+
 
       const response = await axios.get<TResponse>(url, {
         headers: {

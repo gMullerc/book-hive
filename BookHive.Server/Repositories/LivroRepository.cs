@@ -2,6 +2,7 @@
 using BookHive.Server.Repositories.Interfaces;
 using BookHive.Server.Controllers;
 using BookHive.Server.Models;
+using BookHive.Server.Dtos;
 
 namespace BookHive.Server.Repositories
 {
@@ -21,7 +22,13 @@ namespace BookHive.Server.Repositories
         }
         public Livro BuscarPorIdLivro(int id)
         {
-            return _context.Livro.Find(id);            
+            return _context.Livro.Find(id);
         }
+
+        public IQueryable<Livro> BuscarLivros()
+        {
+            return _context.Livro.AsQueryable();
+        }
+
     }
 }

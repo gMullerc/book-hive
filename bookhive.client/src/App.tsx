@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { DefaultLayout } from './core/components/DefaultLayout';
 import { CadastroPage } from './modules/cadastro/presentation/CadastroPage';
+import { DetalheLivroPage } from './modules/detalhe-livro/DetalheLivroPage';
+import { ListagemLivrosPage } from './modules/listagem-livros/presentation/ListagemLivrosPage';
 import { LoginPage } from "./modules/login/presentation/LoginPage";
 import { PerfilPage } from './modules/perfil/presentation/PerfilPage';
 
@@ -25,7 +27,12 @@ export const App = () => {
             <Route path="/cadastro" element={<CadastroPage />} />
             <Route path="/livros" element={
                 <DefaultLayout>
-                    <>HOME</>
+                    <ListagemLivrosPage></ListagemLivrosPage>
+                </DefaultLayout>
+            } />
+            <Route path="/livro/:id" element={
+                <DefaultLayout>
+                    <DetalheLivroPage />
                 </DefaultLayout>
             } />
 

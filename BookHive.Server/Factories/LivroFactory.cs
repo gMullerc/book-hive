@@ -19,8 +19,12 @@ namespace BookHive.Server.Factories
 
         public static LivroDto converterModelParaDto(Livro model)
         {
-            return new LivroDto(model.Titulo, model.Autor, model.Editora, model.Isbn, model.DataPublicacao);
+            return new LivroDto(model.Id, model.Titulo, model.Autor, model.Editora, model.Isbn, model.DataPublicacao);
         }
 
+        public static List<LivroDto> converterListModelParaListDto(List<Livro> livros)
+        {
+            return livros.Select(converterModelParaDto).ToList();
+        }
     }
 }
