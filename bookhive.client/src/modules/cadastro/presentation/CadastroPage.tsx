@@ -13,6 +13,7 @@ import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformac
 import { useNavigate } from "react-router-dom";
 import { limparFormularioCadastro } from "../helpers/limparFormularioCadastro";
 import { Usuario } from "../../../core/@types/Usuario";
+import { Token } from "../../../core/@types/Token";
 
 export const CadastroPage = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ export const CadastroPage = () => {
         resolver: yupResolver(cadastroSchema),
     });
 
-    const { post, data } = usePost<CadastroForm, Usuario>('/api/usuario/cadastrar');
+    const { post, data } = usePost<CadastroForm, Token>('/api/usuario/cadastrar');
 
     useEffect(() => {
         if (data) {

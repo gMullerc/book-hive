@@ -1,24 +1,21 @@
-import { Box, Divider, Grid, Paper, Typography } from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Divider, Grid, Paper, Typography } from "@mui/material";
+import { useEffect } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { Usuario } from "../../../core/@types/Usuario";
 import { CustomActionButton } from "../../../core/components/CustomActionButton";
+import { useGet } from "../../../core/hooks/useGet";
+import { usePut } from "../../../core/hooks/usePut";
+import { PerfilForm } from "../@types/form/perfilForm";
 import { InformacoesEndereco } from "../components/InformacoesEndereco";
 import { InformacoesPessoais } from "../components/InformacoesPessoais";
 import { InformacoesUsuario } from "../components/InformacoesUsuario";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, FormProvider } from "react-hook-form";
 import { perfilSchema } from "../validations/perfilSchema";
-import { useGet } from "../../../core/hooks/useGet";
-import { useEffect } from "react";
-import { recuperarInformacoesUsuario } from "../../../core/helpers/recuperarInformacoesUsuario";
-import { Usuario } from "../../../core/@types/Usuario";
-import { PerfilForm } from "../@types/form/perfilForm";
-import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
-import { usePut } from "../../../core/hooks/usePut";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useNavigate } from "react-router-dom";
 
 export const PerfilPage = () => {
     const navigate = useNavigate();
-
     const methods = useForm<Usuario>({
         resolver: yupResolver(perfilSchema),
     });
@@ -28,26 +25,8 @@ export const PerfilPage = () => {
     const { put: alterarInformacoesCadastrais, data: dadosInformacoesCadastrais } = usePut<PerfilForm, PerfilForm>('/api/pessoa/atualizar');
 
     useEffect(() => {
-        const usuario = recuperarInformacoesUsuario();
-        if (usuario) {
-            getUsuario(usuario.id);
-        }
+        getUsuario();
     }, []);
-
-    useEffect(() => {
-        if (dadosInformacoesCadastrais) {
-
-            const dados = recuperarInformacoesUsuario();
-
-            if (dados?.pessoa) {
-                dados.pessoa.nome = dadosInformacoesCadastrais.nome;
-                dados.pessoa.contato = dadosInformacoesCadastrais.contato;
-                dados.pessoa.endereco = dadosInformacoesCadastrais.endereco;
-
-                guardarInformacoesUsuario(dados);
-            }
-        }
-    }, [dadosInformacoesCadastrais]);
 
     useEffect(() => {
         if (dadosUsuario) {

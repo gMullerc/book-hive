@@ -1,6 +1,7 @@
-﻿import { useState, useCallback } from 'react';
-import axios from 'axios';
+﻿import axios from 'axios';
+import { useCallback, useState } from 'react';
 import { useLoading } from '../contexts/LoadingContext';
+import { recuperarToken } from '../helpers/recuperarToken';
 
 export function useGet<TResponse>(baseUrl: string) {
   const { setLoading } = useLoading();
@@ -13,8 +14,16 @@ export function useGet<TResponse>(baseUrl: string) {
     setError(null);
 
     try {
+      const tokenLocal = recuperarToken();
+
       const url = id ? `${baseUrl}/${id}` : baseUrl;
-      const response = await axios.get<TResponse>(url);
+
+      const response = await axios.get<TResponse>(url, {
+        headers: {
+          'Authorization': `Bearer ${tokenLocal}`
+        }
+      });
+
       setData(response.data);
       return response.data;
     } catch (err: any) {

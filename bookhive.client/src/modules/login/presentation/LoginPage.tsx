@@ -1,19 +1,19 @@
-import { Grid, Paper, Typography, Box, Button, Link } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../validations/loginSchema";
-import { CustomTextField } from "../../../core/components/CustomTextField";
-import { CustomActionButton } from "../../../core/components/CustomActionButton";
-import { usePost } from "../../../core/hooks/usePost";
-import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
+import { Box, Grid, Link, Paper, Typography } from "@mui/material";
 import { useEffect } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { LoginForm } from "../@types/form/LoginForm"; 
-import { Usuario } from "../../../core/@types/Usuario";
+import { Token } from "../../../core/@types/Token";
+import { CustomActionButton } from "../../../core/components/CustomActionButton";
+import { CustomTextField } from "../../../core/components/CustomTextField";
+import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
+import { usePost } from "../../../core/hooks/usePost";
+import { LoginForm } from "../@types/form/LoginForm";
+import { loginSchema } from "../validations/loginSchema";
 
 export const LoginPage = () => {
     const navigate = useNavigate();
-    const { post, data } = usePost<LoginForm, Usuario>('/api/usuario/login');
+    const { post, data } = usePost<LoginForm, Token>('/api/usuario/login');
     const methods = useForm<LoginForm>({
         resolver: yupResolver(loginSchema),
     });

@@ -1,6 +1,5 @@
 using BookHive.Server.Models;
 using BookHive.Server.Dtos;
-using Microsoft.AspNetCore.SignalR;
 
 namespace BookHive.Server.Factories
 {
