@@ -72,7 +72,9 @@ namespace BookHive.Server.Services
 
             Usuario usuarioConvertido = UsuarioFactory.converterDtoParaModel(usuarioDTO);
 
-            return _authService.GerarJwtToken(usuarioConvertido);
+            Usuario usuarioSalvo = _usuarioRepository.CadastrarUsuario(usuarioConvertido);
+
+            return _authService.GerarJwtToken(usuarioSalvo);
         }
 
         public string ValidarLogin(LoginDTO usuarioDto)

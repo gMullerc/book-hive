@@ -1,11 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Divider, Grid, Paper, Typography } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Usuario } from "../../../core/@types/Usuario";
 import { CustomActionButton } from "../../../core/components/CustomActionButton";
+import { CustomSnackbar } from "../../../core/components/CustomSnackbar";
 import { useGet } from "../../../core/hooks/useGet";
 import { usePut } from "../../../core/hooks/usePut";
 import { PerfilForm } from "../@types/form/perfilForm";
@@ -19,14 +20,20 @@ export const PerfilPage = () => {
     const methods = useForm<Usuario>({
         resolver: yupResolver(perfilSchema),
     });
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const { get: getUsuario, data: dadosUsuario, error: erroBuscaUsuario } = useGet<any>('/api/usuario');
 
-    const { get: getUsuario, data: dadosUsuario, error } = useGet<any>('/api/usuario');
-
-    const { put: alterarInformacoesCadastrais, data: dadosInformacoesCadastrais } = usePut<PerfilForm, PerfilForm>('/api/pessoa/atualizar');
+    const { put: alterarInformacoesCadastrais, data: dadosInformacoesCadastrais, error: erroInformacoesCadastrais } = usePut<PerfilForm, PerfilForm>('/api/pessoa/atualizar');
 
     useEffect(() => {
         getUsuario();
     }, []);
+
+    useEffect(() => {
+        if (erroInformacoesCadastrais || erroBuscaUsuario) {
+            setSnackbarOpen(true)
+        }
+    }, [erroInformacoesCadastrais || erroBuscaUsuario]);
 
     useEffect(() => {
         if (dadosUsuario) {
@@ -50,7 +57,7 @@ export const PerfilPage = () => {
         }
     };
 
-    return (
+    return (<>
         <Grid container justifyContent="center" alignItems="center" height="100vh" size={{ xs: 12, md: 10 }}>
             <Grid size={{ xs: 12, md: 10 }}>
                 <Paper elevation={4} sx={{ p: 4, width: '100%' }}>
@@ -77,5 +84,12 @@ export const PerfilPage = () => {
                 </Paper>
             </Grid>
         </Grid>
+        <CustomSnackbar
+            open={snackbarOpen}
+            onClose={() => setSnackbarOpen(false)}
+            message={erroInformacoesCadastrais ?? erroBuscaUsuario ?? ""}
+            severity="error"
+        />
+    </>
     );
 }
