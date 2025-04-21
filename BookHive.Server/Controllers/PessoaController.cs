@@ -1,5 +1,4 @@
 using BookHive.Server.Dtos;
-using BookHive.Server.Repositories.Interfaces;
 using BookHive.Server.Services;
 using Microsoft.AspNetCore.Mvc;
 

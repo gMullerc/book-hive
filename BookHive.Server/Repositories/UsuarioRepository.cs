@@ -15,10 +15,12 @@ namespace BookHive.Server.Repositories
             _context = context;
         }
 
-        public int CadastrarUsuario(Usuario usuario)
+        public Usuario CadastrarUsuario(Usuario usuario)
         {
             _context.Usuario.Add(usuario);
-            return _context.SaveChanges();
+            _context.SaveChanges();
+
+            return usuario;
         }
         public Usuario? FindByEmail(string email)
         {

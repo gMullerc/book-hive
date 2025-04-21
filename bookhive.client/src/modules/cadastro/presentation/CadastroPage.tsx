@@ -1,26 +1,28 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Divider, Grid, Paper, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { cadastroSchema } from "../validations/cadastroSchema";
-import { InformacoesUsuario } from "../components/InformacoesUsuario";
-import { InformacoesPessoais } from "../components/InformacoesPessoais";
-import { InformacoesEndereco } from "../components/InformacoesEndereco";
-import { CadastroForm } from "../@types/form/CadastroForm";
-import { CustomActionButton } from "../../../core/components/CustomActionButton";
-import { usePost } from "../../../core/hooks/usePost";
-import { useEffect } from "react";
-import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
 import { useNavigate } from "react-router-dom";
+import { Token } from "../../../core/@types/Token";
+import { CustomActionButton } from "../../../core/components/CustomActionButton";
+import { CustomSnackbar } from "../../../core/components/CustomSnackbar";
+import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
+import { usePost } from "../../../core/hooks/usePost";
+import { CadastroForm } from "../@types/form/CadastroForm";
+import { InformacoesEndereco } from "../components/InformacoesEndereco";
+import { InformacoesPessoais } from "../components/InformacoesPessoais";
+import { InformacoesUsuario } from "../components/InformacoesUsuario";
 import { limparFormularioCadastro } from "../helpers/limparFormularioCadastro";
-import { Usuario } from "../../../core/@types/Usuario";
+import { cadastroSchema } from "../validations/cadastroSchema";
 
 export const CadastroPage = () => {
     const navigate = useNavigate();
     const methods = useForm<CadastroForm>({
         resolver: yupResolver(cadastroSchema),
     });
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-    const { post, data } = usePost<CadastroForm, Usuario>('/api/usuario/cadastrar');
+    const { post, data, error } = usePost<CadastroForm, Token>('/api/usuario/cadastrar');
 
     useEffect(() => {
         if (data) {
@@ -29,9 +31,17 @@ export const CadastroPage = () => {
         }
     }, [data]);
 
+
+    useEffect(() => {
+        if (error) {
+            setSnackbarOpen(true)
+        }
+    }, [error]);
+
     const onSubmit = async (data: CadastroForm) => post(limparFormularioCadastro(data));
 
-    return (
+    return (<>
+
         <Grid container justifyContent="center" alignItems="center" height="100vh" size={{ xs: 12, md: 10 }}>
             <Grid size={{ xs: 12, md: 10 }}>
                 <Paper elevation={4} sx={{ p: 4, width: '100%' }}>
@@ -53,5 +63,12 @@ export const CadastroPage = () => {
                 </Paper>
             </Grid>
         </Grid>
+        <CustomSnackbar
+            open={snackbarOpen}
+            onClose={() => setSnackbarOpen(false)}
+            message={error ?? ""}
+            severity="error"
+        />
+    </>
     );
 };

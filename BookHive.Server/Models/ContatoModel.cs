@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace BookHive.Server.Models
 {
     public class Contato

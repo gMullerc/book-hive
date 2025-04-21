@@ -9,6 +9,8 @@ namespace BookHive.Server.Services
     {
         void CadastrarLivro(LivroDto livroDto);
         LivroDto BuscarPorIdLivro(int id);
+        PagedResultDto<LivroDto> BuscarLivros(PageDto pagination);
+
     }
 
     public class LivroService : ILivroService
@@ -30,7 +32,32 @@ namespace BookHive.Server.Services
             if (livro != null)
                 return LivroFactory.converterModelParaDto(livro);
             else
-                return new LivroDto("","","","", DateOnly.MaxValue);
+                return new LivroDto(null, "","","","", DateOnly.MaxValue);
         }
+
+        public  PagedResultDto<LivroDto> BuscarLivros(PageDto pagination)
+        {
+            IQueryable<Livro> livrosEncontrados = _livroRepository.BuscarLivros();
+
+            int totalItems = livrosEncontrados.Count();
+            int totalPages = (int)Math.Ceiling(totalItems / (double)pagination.PageSize);
+
+            List<Livro> livros = livrosEncontrados
+                .OrderBy(p => p.Id)
+                .Skip((pagination.PageNumber - 1) * pagination.PageSize)
+                .Take(pagination.PageSize)
+                .ToList();
+
+            List<LivroDto> livroDtos = LivroFactory.converterListModelParaListDto(livros);
+
+            return new PagedResultDto<LivroDto>(
+                PageNumber: pagination.PageNumber,
+                PageSize: pagination.PageSize,
+                TotalItems: totalItems,
+                TotalPages: totalPages,
+                Items: livroDtos
+            );
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+using BookHive.Server.Dtos;
 using BookHive.Server.Models;
 
 namespace BookHive.Server.Repositories.Interfaces
@@ -6,5 +7,7 @@ namespace BookHive.Server.Repositories.Interfaces
     {
         void CadastrarLivro(Livro livro);
         Livro BuscarPorIdLivro(int id);
+        IQueryable<Livro> BuscarLivros();
+
     }
 }

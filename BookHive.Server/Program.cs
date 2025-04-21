@@ -1,21 +1,48 @@
+using System.Text;
 using BookHive.Server.Controllers;
 using BookHive.Server.Exceptions;
 using BookHive.Server.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adiciona serviços MVC
-builder.Services.AddControllers();
+string? chave = builder.Configuration["JwtSettings:SecretKey"];
+string? issuer = builder.Configuration["JwtSettings:Issuer"];
+string? audience = builder.Configuration["JwtSettings:Audience"];
 
+if (string.IsNullOrEmpty(chave) && string.IsNullOrEmpty(issuer) && string.IsNullOrEmpty(audience))
+{
+    throw new Exception("JKT nao configurado corretamente!");
+}
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero, 
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = issuer,
+        ValidAudience = audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(chave!))
+    };
+});
+builder.Services.AddAuthorization();
+builder.Services.AddControllers(options => {
+    options.Filters.Add(new AuthorizeFilter());
+});
 builder.Services.AddServicesByConvention(typeof(Program).Assembly);
 builder.Services.AddRepositoriesByConvention(typeof(Program).Assembly);
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
-
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -25,7 +52,6 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -34,6 +60,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();
