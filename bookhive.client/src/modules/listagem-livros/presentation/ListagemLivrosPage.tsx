@@ -6,6 +6,8 @@ import { Pageable } from "../../../core/@types/Pageable";
 import { CustomSnackbar } from "../../../core/components/CustomSnackbar";
 import { useGet } from "../../../core/hooks/useGet";
 import { CardLivro } from "../components/CardLivro";
+import Button from "@mui/material/Button";
+
 
 export const ListagemLivrosPage = () => {
     const navigate = useNavigate();
@@ -32,7 +34,7 @@ export const ListagemLivrosPage = () => {
     };
 
     return (
-        <>
+        <>      
             <Grid container justifyContent="center" alignItems="center" >
                 <Grid size={{ xs: 12, md: 10 }}>
                     <Paper elevation={4} sx={{ p: 4, width: '100%' }}>
@@ -51,15 +53,23 @@ export const ListagemLivrosPage = () => {
                         <Grid container justifyContent='center' pt={10}>
                             <Pagination onChange={handleChangePage} page={currentPage} count={livros?.totalPages ?? 0} color="primary" />
                         </Grid>
+                        <Grid container justifyContent="flex-end" mb={1}>
+                            <Button variant="contained" color="primary" onClick={() => navigate("/cadastro/livro")}>
+                                Cadastrar Novo Livro
+                            </Button>
+                        </Grid>
                     </Paper>
                 </Grid>
+                
             </Grid>
             <CustomSnackbar
                 open={snackbarOpen}
                 onClose={() => setSnackbarOpen(false)}
                 message={error ?? ""}
                 severity="error"
+
             />
+            
         </>
 
     );
