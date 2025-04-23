@@ -1,5 +1,7 @@
 using BookHive.Server.Dtos;
+using BookHive.Server.Exceptions;
 using BookHive.Server.Factories;
+using BookHive.Server.Infra.Client.Interfaces;
 using BookHive.Server.Models;
 using BookHive.Server.Repositories.Interfaces;
 
@@ -7,9 +9,9 @@ namespace BookHive.Server.Services
 {
     public interface ILivroService
     {
-        void CadastrarLivro(LivroDto livroDto);
-        LivroDto BuscarPorIdLivro(int id);
-        PagedResultDto<LivroDto> BuscarLivros(PageDto pagination);
+        Task CadastrarLivro(CadastroLivroDto livroDto);
+        ListagemLivroDTO BuscarPorIdLivro(int id);
+        PagedResultDto<ListagemLivroDTO> BuscarLivros(PageDto pagination);
 
     }
 
@@ -17,25 +19,59 @@ namespace BookHive.Server.Services
     {
         private readonly ILivroRepository _livroRepository;
 
-        public LivroService(ILivroRepository livroRepository)
+        private readonly IBucketClient _bucketClient;
+
+        public LivroService(ILivroRepository livroRepository, IBucketClient bucketClient)
         {
+            _bucketClient = bucketClient;
             _livroRepository = livroRepository;
         }
 
-        public void CadastrarLivro(LivroDto livroDto) {
-            Livro livro = LivroFactory.converterDtoParaModel(livroDto);
+        public async Task CadastrarLivro(CadastroLivroDto livroDto)
+        {
+            Livro? livroEncontrado = _livroRepository.BuscarPorIsbnLivro(livroDto.Isbn);
+
+            if (livroEncontrado != null)
+            {
+                throw new BadRequestException("Livro já cadastrado com esse ISBN");
+            }
+
+            string caminhoImagem = await SalvarImagem(livroDto);
+
+            Livro livro = LivroFactory.converterCadastroLivroDtoParaModel(livroDto, caminhoImagem, livroDto?.imagem?.nomeImagem);
+
             _livroRepository.CadastrarLivro(livro);
         }
 
-        public LivroDto BuscarPorIdLivro(int id) {
-            var livro = _livroRepository.BuscarPorIdLivro(id);
-            if (livro != null)
-                return LivroFactory.converterModelParaDto(livro);
-            else
-                return new LivroDto(null, "","","","", DateOnly.MaxValue);
+        private async Task<string> SalvarImagem(CadastroLivroDto livroDto)
+        {
+            try
+            {
+                Guid myuuid = Guid.NewGuid();
+                string myuuidAsString = myuuid.ToString();
+
+                return await _bucketClient.UploadImagem(livroDto.imagem, myuuidAsString);
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestException("Ocorreu um erro ao salvar a imagem: []" + ex);
+            }
         }
 
-        public  PagedResultDto<LivroDto> BuscarLivros(PageDto pagination)
+
+        public ListagemLivroDTO BuscarPorIdLivro(int id)
+        {
+            var livro = _livroRepository.BuscarPorIdLivro(id);
+
+            if (livro == null) {
+                throw new BadRequestException("Livro não encontrado");
+            }
+
+            return LivroFactory.converterModelParaListagemLivroDto(livro);
+
+        }
+
+        public PagedResultDto<ListagemLivroDTO> BuscarLivros(PageDto pagination)
         {
             IQueryable<Livro> livrosEncontrados = _livroRepository.BuscarLivros();
 
@@ -48,9 +84,9 @@ namespace BookHive.Server.Services
                 .Take(pagination.PageSize)
                 .ToList();
 
-            List<LivroDto> livroDtos = LivroFactory.converterListModelParaListDto(livros);
+            List<ListagemLivroDTO> livroDtos = LivroFactory.converterListModelParaListListagemLivroDto(livros);
 
-            return new PagedResultDto<LivroDto>(
+            return new PagedResultDto<ListagemLivroDTO>(
                 PageNumber: pagination.PageNumber,
                 PageSize: pagination.PageSize,
                 TotalItems: totalItems,

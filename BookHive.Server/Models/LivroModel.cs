@@ -7,6 +7,8 @@ namespace BookHive.Server.Models
         public required string Autor { get; set; }
         public required string Editora { get; set; }
         public required string Isbn { get; set; }
+        public required string CaminhoImagem {get; set;}
+        public required string NomeImagem {get; set;}
         public required DateOnly DataPublicacao { get; set; }
     }
 }

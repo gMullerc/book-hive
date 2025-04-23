@@ -18,15 +18,15 @@ namespace BookHive.Server.Controllers
         }
 
         [HttpPost("cadastrar")]
-        public IActionResult CadastrarLivro([FromBody] LivroDto livroDto)
+        public async Task<IActionResult> CadastrarLivro([FromBody] CadastroLivroDto livroDto)
         {
-            _livroService.CadastrarLivro(livroDto);
+            await _livroService.CadastrarLivro(livroDto);
             return Ok();
-
         }
 
+
         [HttpGet("BuscarPorId")]
-        public LivroDto BuscarPorIdLivro([FromQuery] int id)
+        public ListagemLivroDTO BuscarPorIdLivro([FromQuery] int id)
         {
             var livro = _livroService.BuscarPorIdLivro(id);
             return livro;

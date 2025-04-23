@@ -20,11 +20,16 @@ namespace BookHive.Server.Repositories
             _context.Livro.Add(livro);
             _context.SaveChanges();
         }
+        
         public Livro BuscarPorIdLivro(int id)
         {
             return _context.Livro.Find(id);
         }
-
+        public Livro? BuscarPorIsbnLivro(string isbn)
+        {
+            return _context.Livro
+                .FirstOrDefault(p => p.Isbn == isbn);
+        }
         public IQueryable<Livro> BuscarLivros()
         {
             return _context.Livro.AsQueryable();

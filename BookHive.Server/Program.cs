@@ -38,6 +38,7 @@ builder.Services.AddControllers(options => {
 });
 builder.Services.AddServicesByConvention(typeof(Program).Assembly);
 builder.Services.AddRepositoriesByConvention(typeof(Program).Assembly);
+builder.Services.AddClientsByConvention(typeof(Program).Assembly);
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));

@@ -419,3 +419,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+BookHive.Server\gcp_credentials.json
