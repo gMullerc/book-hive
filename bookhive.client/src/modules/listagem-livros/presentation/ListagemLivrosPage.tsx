@@ -34,7 +34,7 @@ export const ListagemLivrosPage = () => {
     };
 
     return (
-        <>      
+        <>
             <Grid container justifyContent="center" alignItems="center" >
                 <Grid size={{ xs: 12, md: 10 }}>
                     <Paper elevation={4} sx={{ p: 4, width: '100%' }}>

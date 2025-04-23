@@ -1,5 +1,5 @@
 export type Livro = {
-    id: null;
+    id: number;
     titulo: string; 
     autor: string; 
     editora: string; 

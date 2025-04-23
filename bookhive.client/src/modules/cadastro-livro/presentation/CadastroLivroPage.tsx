@@ -19,7 +19,7 @@ export const CadastroLivroPage = () => {
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-    const { post, data, error } = usePost<CadastroLivroForm, unknown>("/api/livro/cadastrar");
+    const { post, data, error } = usePost<CadastroLivroForm, void>("/api/livro/cadastrar");
 
     useEffect(() => {
         if (data) {
