@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Token } from "../../../core/@types/Token";
 import { CustomActionButton } from "../../../core/components/CustomActionButton";
 import { CustomSnackbar } from "../../../core/components/CustomSnackbar";
-import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
+import { guardarToken } from "../../../core/helpers/token/guardarToken";
 import { usePost } from "../../../core/hooks/usePost";
 import { CadastroForm } from "../@types/form/CadastroForm";
 import { InformacoesEndereco } from "../components/InformacoesEndereco";
@@ -26,7 +26,7 @@ export const CadastroPage = () => {
 
     useEffect(() => {
         if (data) {
-            guardarInformacoesUsuario(data)
+            guardarToken(data)
             navigate('/livros');
         }
     }, [data]);

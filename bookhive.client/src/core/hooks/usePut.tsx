@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { useLoading } from '../contexts/LoadingContext';
-import { recuperarToken } from '../helpers/recuperarToken';
+import { recuperarToken } from '../helpers/token/recuperarToken';
 
 export function usePut<TRequest, TResponse>(url: string) {
   const { setLoading } = useLoading(); 

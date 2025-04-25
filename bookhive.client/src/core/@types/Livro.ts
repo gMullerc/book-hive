@@ -5,4 +5,6 @@ export type Livro = {
     editora: string; 
     isbn: string; 
     dataPublicacao: string; 
+    caminhoImagem: string;
+    nomeImagem: string;
 }

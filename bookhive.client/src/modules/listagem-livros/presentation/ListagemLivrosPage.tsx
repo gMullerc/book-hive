@@ -12,8 +12,7 @@ export const ListagemLivrosPage = () => {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [livros, setLivros] = useState<Pageable<Livro> | undefined>();
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(10);
-
+    const [ pageSize ] = useState(10);
 
     const { get, data, error } = useGet<Pageable<Livro>>("/api/livro");
 
@@ -42,7 +41,7 @@ export const ListagemLivrosPage = () => {
                         <Grid container pt={12} spacing={2}>
                             {livros && (
                                 livros.items.map((livro) => (
-                                    <Grid size={{ sm: 12, md: 6, lg: 4 }} key={livro.id}>
+                                    <Grid size={{ xs: 12, sm: 6, md: 3, lg: 2 }} key={livro.id}>
                                         <CardLivro livro={livro} onClick={() => navigate(`/livro/${livro.id}`)} />
                                     </Grid>
                                 )))

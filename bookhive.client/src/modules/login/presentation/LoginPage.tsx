@@ -7,7 +7,7 @@ import { Token } from "../../../core/@types/Token";
 import { CustomActionButton } from "../../../core/components/CustomActionButton";
 import { CustomSnackbar } from "../../../core/components/CustomSnackbar";
 import { CustomTextField } from "../../../core/components/CustomTextField";
-import { guardarInformacoesUsuario } from "../../../core/helpers/guardarInformacoesUsuario";
+import { guardarToken } from "../../../core/helpers/token/guardarToken";
 import { usePost } from "../../../core/hooks/usePost";
 import { LoginForm } from "../@types/form/LoginForm";
 import { loginSchema } from "../validations/loginSchema";
@@ -26,7 +26,7 @@ export const LoginPage = () => {
 
     useEffect(() => {
         if (data) {
-            guardarInformacoesUsuario(data)
+            guardarToken(data)
             navigate('/livros');
         }
     }, [data]);
@@ -53,11 +53,9 @@ export const LoginPage = () => {
                     <FormProvider {...methods}>
                         <form onSubmit={methods.handleSubmit(onSubmit)} style={{ height: '100%' }}>
                             <Grid container direction="column" gap={10} sx={{ height: '100%' }}>
-
                                 <Typography variant="h5" align="center" color="primary">
                                     BookHive
                                 </Typography>
-
                                 <Box display="flex" flexDirection="column" gap={2}>
                                     <CustomTextField name="email" label="E-mail" />
                                     <CustomTextField name="senha" label="Senha" type="password" />
@@ -77,7 +75,6 @@ export const LoginPage = () => {
                         </form>
                     </FormProvider>
                 </Paper>
-
             </Grid>
             <CustomSnackbar
                 open={snackbarOpen}

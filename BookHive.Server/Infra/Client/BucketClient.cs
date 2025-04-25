@@ -8,11 +8,13 @@ namespace BookHive.Server.Infra.Client
 {
     public class BucketClient : IBucketClient
     {
-        private readonly GoogleCredential googleCredential;
-        private readonly StorageClient storageClient;
-        private readonly string bucketName;
-
+        private readonly IConfiguration configuration;
         public BucketClient(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
+        public async Task<string> UploadImagem(CadastroImagemDTO imagem, string uuid)
         {
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration), "Configuration cannot be null.");
@@ -26,14 +28,10 @@ namespace BookHive.Server.Infra.Client
             if (string.IsNullOrWhiteSpace(bucket))
                 throw new ArgumentException("GCPCredentials:BucketName is not configured properly.");
 
-            googleCredential = GoogleCredential.FromFile(credentialFile);
-            storageClient = StorageClient.Create(googleCredential);
-            bucketName = bucket;
-        }
-
-        public async Task<string> UploadImagem(CadastroImagemDTO imagem, string uuid)
-        {
-            var storage = StorageClient.Create();
+            var googleCredential = GoogleCredential.FromFile(credentialFile);
+            var storage = StorageClient.Create(googleCredential);
+            var bucketName = bucket;
+ 
             byte[] byteArray = System.Convert.FromBase64String(imagem.imageBase64);
             MemoryStream stream = new MemoryStream(byteArray);
             var contentType = ObterMimeType(imagem.extensaoImagem);
@@ -41,6 +39,7 @@ namespace BookHive.Server.Infra.Client
 
             return bucketName + "/" + uuid;
         }
+
 
         private string ObterMimeType(string extensao)
         {
