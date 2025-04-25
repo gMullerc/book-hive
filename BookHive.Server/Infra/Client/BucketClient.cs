@@ -17,7 +17,7 @@ namespace BookHive.Server.Infra.Client
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration), "Configuration cannot be null.");
 
-            var credentialFile = configuration["GCPCredentials:CredentialFile"];
+            string? credentialFile = Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
             var bucket = configuration["GCPCredentials:BucketName"];
 
             if (string.IsNullOrWhiteSpace(credentialFile))
