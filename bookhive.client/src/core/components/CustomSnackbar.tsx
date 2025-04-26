@@ -24,7 +24,7 @@ export const CustomSnackbar: React.FC<CustomSnackbarProps> = ({ open, onClose, m
                 autoHideDuration={3000}
                 onClose={onClose}
             >
-                <Alert  sx={{borderRadius: 100}} onClose={onClose} severity={severity} variant="filled">
+                <Alert sx={{visibility: message ? 'visible' : 'hidden',  borderRadius: 100}} onClose={onClose} severity={severity} variant="filled">
                     {message}
                 </Alert>
             </Snackbar>

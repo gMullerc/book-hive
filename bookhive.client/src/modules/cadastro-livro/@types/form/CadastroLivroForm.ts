@@ -3,6 +3,11 @@ export type CadastroLivroForm = {
     autor: string,
     editora: string,
     isbn: string,
-    dataPublicacao: string
+    dataPublicacao: string,
 }
 
+export type Imagem = {
+    nomeImagem: string,
+    extensaoImagem: string,
+    imageBase64: string,
+};

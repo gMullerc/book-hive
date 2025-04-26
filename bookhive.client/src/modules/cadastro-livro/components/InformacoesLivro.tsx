@@ -1,12 +1,19 @@
 import { Grid } from "@mui/material";
-import { useFormContext } from "react-hook-form";
 import { CustomTextField } from "../../../core/components/CustomTextField";
+import { CustomFileInput } from "../../../core/components/CustomFileInput/CustomFileInput";
 
-export const InformacoesLivro = () => {
-    
+type Props = {
+    onError: (value: string) => void;
+    storedFiles: File[],
+    setStoredFiles: (value: File[]) => void
+}
+
+
+export const InformacoesLivro = ({ onError, storedFiles, setStoredFiles }: Props) => {
+
     return (
-        <Grid container spacing={2}>
-            <Grid size={{xs:12, md:6}} >
+        <Grid display='flex' container size={{ xs: 12 }} spacing={2} >
+            <Grid size={{ xs: 12, md: 6 }} >
                 <CustomTextField
                     required
                     label="Título"
@@ -14,7 +21,7 @@ export const InformacoesLivro = () => {
                     name="titulo"
                 />
             </Grid>
-            <Grid size={{xs:12, md:6}} >
+            <Grid size={{ xs: 12, md: 6 }} >
                 <CustomTextField
                     required
                     label="Autor"
@@ -22,7 +29,7 @@ export const InformacoesLivro = () => {
                     name="autor"
                 />
             </Grid>
-            <Grid size={{xs:12, md:6}} >
+            <Grid size={{ xs: 12, md: 6 }} >
                 <CustomTextField
                     required
                     label="Editora"
@@ -30,7 +37,7 @@ export const InformacoesLivro = () => {
                     name="editora"
                 />
             </Grid>
-            <Grid size={{xs:12, md:6}} >
+            <Grid size={{ xs: 12, md: 6 }} >
                 <CustomTextField
                     required
                     label="ISBN"
@@ -38,7 +45,7 @@ export const InformacoesLivro = () => {
                     name="isbn"
                 />
             </Grid>
-            <Grid size={{xs:12, md:6}} >
+            <Grid size={{ xs: 12, md: 6 }} >
                 <CustomTextField
                     required
                     label="Data de Publicação"
@@ -47,6 +54,15 @@ export const InformacoesLivro = () => {
                     name="dataPublicacao"
                 />
             </Grid>
+
+            <Grid size={{ xs: 12 }} >
+                <CustomFileInput
+                    onError={(value) => onError(value)}
+                    storedFiles={storedFiles}
+                    label="Foto da capa"
+                    setStoredFiles={setStoredFiles}></CustomFileInput>
+            </Grid>
+
         </Grid>
     );
 };

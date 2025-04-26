@@ -40,10 +40,10 @@ export const ListagemLivrosPage = () => {
                         <Typography variant="h5" align="center" color="primary">
                             Livros
                         </Typography>
-                        <Grid container pt={12} spacing={2}>
+                        <Grid container pt={12} spacing={6}>
                             {livros && (
                                 livros.items.map((livro) => (
-                                    <Grid size={{ xs: 12, sm: 6, md: 3, lg: 2 }} key={livro.id}>
+                                    <Grid size={{ xs: 12, md: 6, lg: 3 }} key={livro.id}>
                                         <CardLivro livro={livro} onClick={() => navigate(`/livro/${livro.id}`)} />
                                     </Grid>
                                 )))

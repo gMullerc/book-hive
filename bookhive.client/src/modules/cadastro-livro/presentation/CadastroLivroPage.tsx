@@ -9,6 +9,7 @@ import { usePost } from "../../../core/hooks/usePost";
 import { livroSchema } from "../validations/livroSchema";
 import { InformacoesLivro } from "../components/InformacoesLivro";
 import { CadastroLivroForm } from "../@types/form/CadastroLivroForm";
+import { agruparInformacoesCadastroLivro } from "../helpers/agruparInformacoesCadastroLivro";
 
 export const CadastroLivroPage = () => {
     const navigate = useNavigate();
@@ -19,13 +20,31 @@ export const CadastroLivroPage = () => {
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
-    const { post, data, error } = usePost<CadastroLivroForm, void>("/api/livro/cadastrar");
+    const [storedFiles, setStoredFiles] = useState<File[]>([]);
+
+    const { post, data, error, success, setSuccess } = usePost<CadastroLivroForm, void>("/api/livro/cadastrar");
+    const [imagemInvalida, setImagemInvalida] = useState<string>("");
+    const onCloseSnackBar = () => {
+        setSnackbarOpen(false);
+
+        if (imagemInvalida) {
+            setImagemInvalida("");
+        }
+
+    };
 
     useEffect(() => {
-        if (data) {
+        if (success) {
             navigate("/livros");
+            setSuccess(false);
         }
-    }, [data]);
+    }, [success]);
+
+    useEffect(() => {
+        if (imagemInvalida) {
+            setSnackbarOpen(true);
+        }
+    }, [imagemInvalida]);
 
     useEffect(() => {
         if (error) {
@@ -33,23 +52,41 @@ export const CadastroLivroPage = () => {
         }
     }, [error]);
 
-    const onSubmit = async (data: CadastroLivroForm) => post(data);
-    
+    useEffect(() => {
+        if(success){
+            navigate("/livros")
+        }
+    }, [success]);
+
+    const onSubmit = async (data: CadastroLivroForm) => {
+        if(!storedFiles.length){
+            setImagemInvalida("Imagem é obrigatória.")
+            return;
+        }
+
+        const payload = await agruparInformacoesCadastroLivro(data, storedFiles);
+        
+        post(payload);
+    };
+
     return (
         <>
             <Grid container justifyContent="center" alignItems="center" height="100vh">
                 <Grid size={{ xs: 12, md: 10 }} >
                     <Paper elevation={4} sx={{ p: 4, width: "100%" }}>
-                        <Typography sx={{mb:4}} variant="h5" align="center" color="primary">
+                        <Typography sx={{ mb: 4 }} variant="h5" align="center" color="primary">
                             Cadastro de Livro
                         </Typography>
 
                         <FormProvider {...methods}>
                             <form onSubmit={methods.handleSubmit(onSubmit)}>
                                 <Grid container spacing={4}>
-                                    <InformacoesLivro />
-
-                                    <Grid size={{xs:12}}>
+                                    <InformacoesLivro
+                                        setStoredFiles={setStoredFiles}
+                                        storedFiles={storedFiles}
+                                        onError={(value) => { setImagemInvalida(value) }}
+                                    />
+                                    <Grid size={{ xs: 12 }}>
                                         <Divider orientation="horizontal" flexItem />
                                     </Grid>
 
@@ -65,8 +102,8 @@ export const CadastroLivroPage = () => {
 
             <CustomSnackbar
                 open={snackbarOpen}
-                onClose={() => setSnackbarOpen(false)}
-                message={error ?? ""}
+                onClose={onCloseSnackBar}
+                message={error ?? imagemInvalida ?? ""}
                 severity="error"
             />
         </>

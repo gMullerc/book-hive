@@ -8,8 +8,12 @@ export const theme = createTheme({
     secondary: {
       main: 'rgba(145, 72, 132, 1)',
     },
+    action: {
+      hover: 'rgb(204, 165, 197)',
+    },
     background: {
       default: 'rgba(217, 217, 217, 1)',
     },
+ 
   },
 });

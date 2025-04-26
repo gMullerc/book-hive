@@ -1,6 +1,7 @@
 import * as yup from "yup";
-
-export const livroSchema = yup.object({
+import { CadastroLivroForm } from "../@types/form/CadastroLivroForm";
+ 
+export const livroSchema: yup.ObjectSchema<CadastroLivroForm> = yup.object({
   titulo: yup.string().required("Título é obrigatório").max(200),
   autor: yup.string().required("Autor é obrigatório").max(150),
   editora: yup.string().required("Editora é obrigatória").max(150),

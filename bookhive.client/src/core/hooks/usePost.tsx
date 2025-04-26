@@ -11,10 +11,14 @@ export function usePost<TRequest, TResponse>(url: string) {
 
   const [data, setData] = useState<TResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  
+  const [success, setSuccess] = useState<boolean>(false);
 
   const post = useCallback(async (body: TRequest): Promise<TResponse | null> => {
     setLoading(true);
     setError(null);
+
+    setSuccess(false);
 
     try {
       const tokenLocal = recuperarToken();
@@ -23,6 +27,7 @@ export function usePost<TRequest, TResponse>(url: string) {
           'Authorization': `Bearer ${tokenLocal}`
         }
       });
+      setSuccess(true);
       setData(response.data);
       return response.data;
     } catch (err: any) {
@@ -39,5 +44,5 @@ export function usePost<TRequest, TResponse>(url: string) {
     }
   }, [url, setLoading]);
 
-  return { post, data, error };
+  return { post, data, error, success, setSuccess };
 }
