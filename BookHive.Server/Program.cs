@@ -66,6 +66,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapFallbackToFile("/index.html");
+app.MapFallbackToFile("index.html");
 
 app.Run();
+
+// Open the default browser to the front
+//System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+//{
+//    FileName = "http://localhost:5000",
+//    UseShellExecute = true
+//});

@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:50253",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\..\\bookhive.client",
+"WorkingDirectory": "C:\\Users\\Ricardo Araujo\\Documents\\PROJETOS\\git-code\\book-hive\\BookHive.Server\\..\\bookhive.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

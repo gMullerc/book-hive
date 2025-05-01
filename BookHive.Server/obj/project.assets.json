@@ -1955,23 +1955,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\TheGu\\.nuget\\packages\\": {},
+    "C:\\Users\\Ricardo Araujo\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\BookHive.Server.csproj",
+      "projectUniqueName": "C:\\Users\\Ricardo Araujo\\Documents\\PROJETOS\\git-code\\book-hive\\BookHive.Server\\BookHive.Server.csproj",
       "projectName": "BookHive.Server",
-      "projectPath": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\BookHive.Server.csproj",
-      "packagesPath": "C:\\Users\\TheGu\\.nuget\\packages\\",
-      "outputPath": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\obj\\",
+      "projectPath": "C:\\Users\\Ricardo Araujo\\Documents\\PROJETOS\\git-code\\book-hive\\BookHive.Server\\BookHive.Server.csproj",
+      "packagesPath": "C:\\Users\\Ricardo Araujo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ricardo Araujo\\Documents\\PROJETOS\\git-code\\book-hive\\BookHive.Server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\TheGu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ricardo Araujo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2044,7 +2044,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

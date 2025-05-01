@@ -1,36 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\uninove-dev\\teste\\book-hive\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.server\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|solutionrelative:bookhive.server\\controllers\\usuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.server\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|solutionrelative:bookhive.server\\services\\usuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.server\\dtos\\pessoadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|solutionrelative:bookhive.server\\dtos\\pessoadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.server\\dtos\\usuarioconsultadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|solutionrelative:bookhive.server\\dtos\\usuarioconsultadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.server\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|solutionrelative:bookhive.server\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|solutionrelative:bookhive.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|c:\\uninove-dev\\teste\\book-hive\\bookhive.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{BBC53617-8A1B-46FB-8CE8-826391B6E71F}|BookHive.Server\\BookHive.Server.csproj|solutionrelative:bookhive.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\Ricardo Araujo\\Documents\\PROJETOS\\git-code\\book-hive\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -38,102 +9,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UsuarioConsultaDTO.cs",
-              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Dtos\\UsuarioConsultaDTO.cs",
-              "RelativeDocumentMoniker": "BookHive.Server\\Dtos\\UsuarioConsultaDTO.cs",
-              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Dtos\\UsuarioConsultaDTO.cs",
-              "RelativeToolTip": "BookHive.Server\\Dtos\\UsuarioConsultaDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T02:03:29.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PessoaDTO.cs",
-              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Dtos\\PessoaDTO.cs",
-              "RelativeDocumentMoniker": "BookHive.Server\\Dtos\\PessoaDTO.cs",
-              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Dtos\\PessoaDTO.cs",
-              "RelativeToolTip": "BookHive.Server\\Dtos\\PessoaDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T02:03:25.046Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UsuarioRepository.cs",
-              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Repositories\\UsuarioRepository.cs",
-              "RelativeDocumentMoniker": "BookHive.Server\\Repositories\\UsuarioRepository.cs",
-              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Repositories\\UsuarioRepository.cs",
-              "RelativeToolTip": "BookHive.Server\\Repositories\\UsuarioRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T02:00:46.461Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UsuarioService.cs",
-              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Services\\UsuarioService.cs",
-              "RelativeDocumentMoniker": "BookHive.Server\\Services\\UsuarioService.cs",
-              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Services\\UsuarioService.cs",
-              "RelativeToolTip": "BookHive.Server\\Services\\UsuarioService.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAASwBAAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T02:00:27.362Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuarioController.cs",
-              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Controllers\\UsuarioController.cs",
-              "RelativeDocumentMoniker": "BookHive.Server\\Controllers\\UsuarioController.cs",
-              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Controllers\\UsuarioController.cs",
-              "RelativeToolTip": "BookHive.Server\\Controllers\\UsuarioController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T02:00:02.494Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\appsettings.json",
-              "RelativeDocumentMoniker": "BookHive.Server\\appsettings.json",
-              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\appsettings.json",
-              "RelativeToolTip": "BookHive.Server\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-11T22:11:09.849Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Program.cs",
-              "RelativeDocumentMoniker": "BookHive.Server\\Program.cs",
-              "ToolTip": "C:\\uninove-dev\\teste\\book-hive\\BookHive.Server\\Program.cs",
-              "RelativeToolTip": "BookHive.Server\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T01:08:12.184Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
