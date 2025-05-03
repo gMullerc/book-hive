@@ -35,5 +35,11 @@ namespace BookHive.Server.Repositories
             return _context.Livro.AsQueryable();
         }
 
+        public void Excluir(Livro livro)
+        {
+            _context.Livro.Remove(livro);
+            _context.SaveChanges();
+        }
+
     }
 }
