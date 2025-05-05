@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig, loadEnv, ServerOptions } from 'vite';
 import plugin from '@vitejs/plugin-react';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -9,30 +9,41 @@ import { env } from 'node:process';
 export default defineConfig(({ mode }) => {
     const envVars = loadEnv(mode, process.cwd(), '');
 
-    const baseFolder =
-        env.APPDATA !== undefined && env.APPDATA !== ''
-            ? `${env.APPDATA}/ASP.NET/https`
-            : `${env.HOME}/.aspnet/https`;
+    const isDevelopment = mode === 'development';
 
-    const certificateName = 'bookhive.client';
-    const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
-    const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
+    const serverConfig: Partial<ServerOptions> = {};
 
-    if (!fs.existsSync(baseFolder)) {
-        fs.mkdirSync(baseFolder, { recursive: true });
-    }
+    if (isDevelopment) {
+        const baseFolder =
+            env.APPDATA !== undefined && env.APPDATA !== ''
+                ? `${env.APPDATA}/ASP.NET/https`
+                : `${env.HOME}/.aspnet/https`;
 
-    if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
-        if (
-            0 !==
-            child_process.spawnSync(
-                'dotnet',
-                ['dev-certs', 'https', '--export-path', certFilePath, '--format', 'Pem', '--no-password'],
-                { stdio: 'inherit' }
-            ).status
-        ) {
-            throw new Error('Could not create certificate.');
+        const certificateName = 'bookhive.client';
+        const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
+        const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
+
+        if (!fs.existsSync(baseFolder)) {
+            fs.mkdirSync(baseFolder, { recursive: true });
         }
+
+        if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
+            if (
+                0 !==
+                child_process.spawnSync(
+                    'dotnet',
+                    ['dev-certs', 'https', '--export-path', certFilePath, '--format', 'Pem', '--no-password'],
+                    { stdio: 'inherit' }
+                ).status
+            ) {
+                throw new Error('Could not create certificate.');
+            }
+        }
+
+        serverConfig.https = {
+            key: fs.readFileSync(keyFilePath),
+            cert: fs.readFileSync(certFilePath),
+        };
     }
 
     const target = env.VITE_BACKEND_URL || 'http://localhost:5135';
@@ -53,10 +64,7 @@ export default defineConfig(({ mode }) => {
               }
             },
             port: parseInt(env.DEV_SERVER_PORT || '50253'),
-            https: {
-              key: fs.readFileSync(keyFilePath),
-              cert: fs.readFileSync(certFilePath),
-            }
+            ...serverConfig, 
         },          
     };
 });

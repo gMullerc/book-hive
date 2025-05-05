@@ -43,7 +43,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.WebHost.UseUrls("http://*:5135");
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

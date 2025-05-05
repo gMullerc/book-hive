@@ -22,6 +22,7 @@
     <PackageJsonDependenciesReactDom Condition="$(PackageJsonDependenciesReactDom) == ''">^19.0.0</PackageJsonDependenciesReactDom>
     <PackageJsonDependenciesReactDropzone Condition="$(PackageJsonDependenciesReactDropzone) == ''">^14.3.8</PackageJsonDependenciesReactDropzone>
     <PackageJsonDependenciesReactRouterDom Condition="$(PackageJsonDependenciesReactRouterDom) == ''">^7.5.0</PackageJsonDependenciesReactRouterDom>
+    <PackageJsonDependenciesServe Condition="$(PackageJsonDependenciesServe) == ''">^14.2.4</PackageJsonDependenciesServe>
     <PackageJsonDependenciesTypescript Condition="$(PackageJsonDependenciesTypescript) == ''">^5.8.3</PackageJsonDependenciesTypescript>
     <PackageJsonDependenciesYup Condition="$(PackageJsonDependenciesYup) == ''">^1.6.1</PackageJsonDependenciesYup>
     <PackageJsonDevdependenciesEslintJs Condition="$(PackageJsonDevdependenciesEslintJs) == ''">^9.21.0</PackageJsonDevdependenciesEslintJs>
