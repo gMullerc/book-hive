@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { Grid, Paper, Box, Card, CardContent, CardMedia, Typography, Divider } from "@mui/material";
-
+import { Grid, Paper, Box, Card, CardContent, CardMedia, Typography, Divider, useTheme } from "@mui/material";
+ 
 
 import { formatarDataDiaMesAno } from "../../../core/helpers/formatDate";
 import { useDelete } from "../../../core/hooks/useDelete";
@@ -17,7 +17,7 @@ import { useDelete } from "../../../core/hooks/useDelete";
 export const DetalheLivroPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-
+    const theme = useTheme();
     const { get, error, data } = useGet<Livro>("/api/livro/BuscarPorId");
     const { del , error: erroDeletarLivro } = useDelete("/api/livro/Excluir");
 
@@ -92,7 +92,7 @@ export const DetalheLivroPage = () => {
                                             position: "absolute",
                                             bottom: 16,
                                             right: 16,
-                                            backgroundColor: "#f44336",
+                                            backgroundColor: theme.palette.primary.main,
                                             color: "#fff",
                                             "&:hover": {
                                                 backgroundColor: "#d32f2f",
