@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Livro } from "../../../core/@types/Livro";
 import { useGet } from "../../../core/hooks/useGet";
+import { IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import { Grid, Paper, Box, Card, CardContent, CardMedia, Typography, Divider } from "@mui/material";
 
@@ -11,6 +15,7 @@ import { formatarDataDiaMesAno } from "../../../core/helpers/formatDate";
 
 export const DetalheLivroPage = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const { get, error, data } = useGet<Livro>("/api/livro/BuscarPorId");
 
@@ -25,6 +30,10 @@ export const DetalheLivroPage = () => {
     useEffect(() => {
         get("", `?id=${id}`)
     }, []);
+      
+    const deletarLivro = async() =>{
+        axios.delete(`/Excluir?id=${id}`);
+    }
 
     return (
         <>
@@ -35,7 +44,7 @@ export const DetalheLivroPage = () => {
                     <Grid container justifyContent="center">
                         {livro && (
                             <Grid size={{ xs: 12, md: 10 }}>
-                                <Paper elevation={4} sx={{ p: 4, width: 700 }}>
+                                <Paper elevation={4} sx={{ p: 4, width: 700, position: "relative" }}>
                                     <Typography variant="h5" align="center" color="primary" gutterBottom>
                                         {livro.titulo}
                                     </Typography>
@@ -69,6 +78,21 @@ export const DetalheLivroPage = () => {
                                             </Typography>
                                         </Grid>
                                     </Grid>
+                                    <IconButton
+                                        onClick={deletarLivro}
+                                        sx={{
+                                            position: "absolute",
+                                            bottom: 16,
+                                            right: 16,
+                                            backgroundColor: "#f44336",
+                                            color: "#fff",
+                                            "&:hover": {
+                                                backgroundColor: "#d32f2f",
+                                            },
+                                        }}
+                                    >
+                                        <DeleteIcon />
+                                    </IconButton>
                                 </Paper>
                             </Grid>
                         )}

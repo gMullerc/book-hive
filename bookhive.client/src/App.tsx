@@ -36,6 +36,11 @@ export const App = () => {
                     <DetalheLivroPage />
                 </DefaultLayout>
             } />
+            <Route path="/Excluir/:id" element={
+                <DefaultLayout>
+                    <ListagemLivrosPage></ListagemLivrosPage>
+                </DefaultLayout>
+            } />
 
             <Route path="/cadastro/livro" element={
                 <DefaultLayout>
