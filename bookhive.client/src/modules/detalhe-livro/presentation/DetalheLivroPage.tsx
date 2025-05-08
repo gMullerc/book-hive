@@ -12,12 +12,14 @@ import { Grid, Paper, Box, Card, CardContent, CardMedia, Typography, Divider } f
 
 
 import { formatarDataDiaMesAno } from "../../../core/helpers/formatDate";
+import { useDelete } from "../../../core/hooks/useDelete";
 
 export const DetalheLivroPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
     const { get, error, data } = useGet<Livro>("/api/livro/BuscarPorId");
+    const { del , error: erroDeletarLivro } = useDelete("/api/livro/Excluir");
 
     const [livro, setLivro] = useState<Livro | undefined>(undefined);
 
@@ -31,9 +33,15 @@ export const DetalheLivroPage = () => {
         get("", `?id=${id}`)
     }, []);
       
-    const deletarLivro = async() =>{
-        axios.delete(`/Excluir?id=${id}`);
-    }
+    const handleDelete = async () => {
+        const deleted = await del(`id=${id}`);
+        if (deleted) {
+            console.log('Item deletado com sucesso!');
+            navigate('/livros');
+        } else {
+            console.error(error);
+        }
+    };
 
     return (
         <>
@@ -79,7 +87,7 @@ export const DetalheLivroPage = () => {
                                         </Grid>
                                     </Grid>
                                     <IconButton
-                                        onClick={deletarLivro}
+                                        onClick={handleDelete}
                                         sx={{
                                             position: "absolute",
                                             bottom: 16,
