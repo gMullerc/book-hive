@@ -12,6 +12,7 @@ namespace BookHive.Server.Services
         Task CadastrarLivro(CadastroLivroDto livroDto);
         ListagemLivroDTO BuscarPorIdLivro(int id);
         PagedResultDto<ListagemLivroDTO> BuscarLivros(PageDto pagination);
+        void Excluir(int id);
 
     }
 
@@ -93,6 +94,16 @@ namespace BookHive.Server.Services
                 TotalPages: totalPages,
                 Items: livroDtos
             );
+        }
+        
+        public void Excluir(int id)
+        {
+            var livro = _livroRepository.BuscarPorIdLivro(id);
+            if (livro == null)
+            {
+                throw new BadRequestException("Livro não encontrado");
+            }
+            _livroRepository.Excluir(livro);
         }
 
     }

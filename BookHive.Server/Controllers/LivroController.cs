@@ -1,8 +1,6 @@
 using BookHive.Server.Dtos;
-using BookHive.Server.Models;
 using BookHive.Server.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookHive.Server.Controllers
 {
@@ -37,5 +35,13 @@ namespace BookHive.Server.Controllers
         {
             return Ok(_livroService.BuscarLivros(pagination));
         }
+
+        [HttpDelete("Excluir")]
+        public IActionResult Excluir([FromQuery] int id)
+        {
+            _livroService.Excluir(id);
+            return Ok();
+        }
+
     }
 }
