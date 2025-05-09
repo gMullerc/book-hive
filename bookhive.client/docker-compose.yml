@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  client:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "50253:50253"
+    volumes:
+      - "/home/app/node_modules"
+      - "./:/home/app"
+    command: npm run dev
+    environment:
+      - DOCKER=true
+      - DEV_SERVER_PORT=50253
+      - VITE_BACKEND_URL=https://bookhive-server-142395531834.southamerica-east1.run.app
