@@ -4,8 +4,10 @@ docker-compose build --no-cache
 //subir localmente
 docker-compose up -d
 
-docker tag 0ab6cf30cb97 southamerica-east1-docker.pkg.dev/enhanced-prism-457700-m9/bookhive-docker-repo/frontend:latest
-docker tag 2bf6a4200d70 southamerica-east1-docker.pkg.dev/enhanced-prism-457700-m9/bookhive-docker-repo/backend:latest
+docker tag book-hive-frontend:latest southamerica-east1-docker.pkg.dev/enhanced-prism-457700-m9/bookhive-docker-repo/frontend:latest
+docker tag book-hive-backend:latest  southamerica-east1-docker.pkg.dev/enhanced-prism-457700-m9/bookhive-docker-repo/backend:latest
+
+
 
 docker push southamerica-east1-docker.pkg.dev/enhanced-prism-457700-m9/bookhive-docker-repo/frontend:latest
 docker push southamerica-east1-docker.pkg.dev/enhanced-prism-457700-m9/bookhive-docker-repo/backend:latest
