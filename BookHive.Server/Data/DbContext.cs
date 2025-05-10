@@ -10,6 +10,8 @@ namespace BookHive.Server.Controllers
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
         public DbSet<Endereco> Endereco { get; set; }
+        public DbSet<Emprestimo> Emprestimo { get; set; }
+        public DbSet<Dominio> Dominio { get; set; }
         public DbSet<Livro> Livro { get; set; }
     }
 }

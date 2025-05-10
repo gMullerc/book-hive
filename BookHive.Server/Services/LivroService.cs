@@ -18,13 +18,16 @@ namespace BookHive.Server.Services
     public class LivroService : ILivroService
     {
         private readonly ILivroRepository _livroRepository;
+        
+        private readonly IDominioRepository _dominioRepository;
 
         private readonly IBucketClient _bucketClient;
 
-        public LivroService(ILivroRepository livroRepository, IBucketClient bucketClient)
+        public LivroService(ILivroRepository livroRepository, IBucketClient bucketClient, IDominioRepository dominioRepository)
         {
             _bucketClient = bucketClient;
             _livroRepository = livroRepository;
+            _dominioRepository = dominioRepository;
         }
 
         public async Task CadastrarLivro(CadastroLivroDto livroDto)
@@ -38,7 +41,14 @@ namespace BookHive.Server.Services
 
             string caminhoImagem = await SalvarImagem(livroDto);
 
-            Livro livro = LivroFactory.converterCadastroLivroDtoParaModel(livroDto, caminhoImagem, livroDto?.imagem?.nomeImagem);
+            string v = SituacaoLivro.DISPONIVEL.ToString();
+            Dominio? situacao = _dominioRepository.BuscarDominioPorCodigo(SituacaoLivro.DISPONIVEL.ToString());
+
+            if(situacao == null) {
+                 throw new BadRequestException("Ocorreu um erro ao gerar a situação do livro.");
+            }
+
+            Livro livro = LivroFactory.converterCadastroLivroDtoParaModel(livroDto, caminhoImagem, livroDto?.imagem?.nomeImagem, situacao);
 
             _livroRepository.CadastrarLivro(livro);
         }
@@ -61,7 +71,7 @@ namespace BookHive.Server.Services
 
         public ListagemLivroDTO BuscarPorIdLivro(int id)
         {
-            var livro = _livroRepository.BuscarPorIdLivro(id);
+            Livro livro = _livroRepository.BuscarPorIdLivro(id);
 
             if (livro == null) {
                 throw new BadRequestException("Livro não encontrado");
