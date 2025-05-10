@@ -1,48 +1,20 @@
-import { fileURLToPath, URL } from 'node:url';
-import { defineConfig, loadEnv } from 'vite';
-import plugin from '@vitejs/plugin-react';
-import fs from 'node:fs';
-import path from 'node:path';
-import child_process from 'node:child_process';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
 import { env } from 'node:process';
 
+// https://vite.dev/config/
+
 export default defineConfig(({ mode }) => {
-    // const envVars = loadEnv(mode, process.cwd(), '');
 
-    // const baseFolder =
-    //     env.APPDATA !== undefined && env.APPDATA !== ''
-    //         ? `${env.APPDATA}/ASP.NET/https`
-    //         : `${env.HOME}/.aspnet/https`;
-
-    // const certificateName = 'bookhive.client';
-    // const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
-    // const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
-
-    // if (!fs.existsSync(baseFolder)) {
-    //     fs.mkdirSync(baseFolder, { recursive: true });
-    // }
-
-    // if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
-    //     if (
-    //         0 !==
-    //         child_process.spawnSync(
-    //             'dotnet',
-    //             ['dev-certs', 'https', '--export-path', certFilePath, '--format', 'Pem', '--no-password'],
-    //             { stdio: 'inherit' }
-    //         ).status
-    //     ) {
-    //         throw new Error('Could not create certificate.');
-    //     }
-    // }
-
-    const target = env.VITE_BACKEND_URL || 'http://localhost:5135';
+    const target = "https://backend-142395531834.southamerica-east1.run.app";
 
     return {
-        plugins: [plugin()],
-        resolve: {
-            alias: {
-                '@': fileURLToPath(new URL('./src', import.meta.url)),
-            },
+        base: "/",
+        plugins: [react()],
+        preview: {
+            port: 8080,
+            strictPort: true,
         },
         server: {
             proxy: {
@@ -52,12 +24,10 @@ export default defineConfig(({ mode }) => {
                 changeOrigin: true
               }
             },
-            port: parseInt(env.DEV_SERVER_PORT || '50253'),
-            https: false
-            // https: {
-            //   key: fs.readFileSync(keyFilePath),
-            //   cert: fs.readFileSync(certFilePath),
-            // }
-        },          
-    };
-});
+            port: 8080,
+            strictPort: true,
+            host: true,
+            origin: "http://0.0.0.0:8080",
+        },
+    }
+})

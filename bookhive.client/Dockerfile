@@ -1,22 +1,29 @@
-
-FROM node:20-alpine AS builder
+# Stage de build
+FROM node:20-alpine AS vite-app
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm cache clean --force
 RUN npm install
 
-COPY ./ .
+COPY . .
 
 RUN npm run build
 
 FROM nginx:alpine
 
-RUN rm /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Copiar o conteúdo gerado pelo Vite
+COPY --from=vite-app /app/dist /usr/share/nginx/html
 
-EXPOSE 80
+# Copiar o arquivo de configuração personalizado
+COPY nginx.conf /etc/nginx/nginx.conf
 
-CMD ["nginx", "-g", "daemon off;"]
+# Expondo a porta 8080 para o NGINX
+EXPOSE 8080
+
+# Definir a variável de ambiente PORT
+ENV PORT=8080
+
+# Alterar o comando do NGINX para ouvir na porta 8080
+CMD ["nginx", "-g", "daemon off;", "-p", "8080"]
+

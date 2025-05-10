@@ -5,7 +5,8 @@ import { recuperarToken } from '../helpers/token/recuperarToken';
 import { removerToken } from '../helpers/token/removerToken';
 import { useNavigate } from 'react-router-dom';
 
-export function usePost<TRequest, TResponse>(url: string) {
+export function usePost<TRequest, TResponse>(endpoint: string) {
+  const baseUrl = "https://backend-142395531834.southamerica-east1.run.app"
   const navigate = useNavigate();
   const { setLoading } = useLoading();
 
@@ -22,7 +23,7 @@ export function usePost<TRequest, TResponse>(url: string) {
 
     try {
       const tokenLocal = recuperarToken();
-      const response = await axios.post<TResponse>(url, body, {
+      const response = await axios.post<TResponse>(`${baseUrl}${endpoint}`, body, {
         headers: {
           'Authorization': `Bearer ${tokenLocal}`
         }
@@ -42,7 +43,7 @@ export function usePost<TRequest, TResponse>(url: string) {
     } finally {
       setLoading(false);
     }
-  }, [url, setLoading]);
+  }, [endpoint, setLoading]);
 
   return { post, data, error, success, setSuccess };
 }

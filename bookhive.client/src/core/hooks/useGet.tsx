@@ -5,7 +5,7 @@ import { recuperarToken } from '../helpers/token/recuperarToken';
 import { useNavigate } from 'react-router-dom';
 import { removerToken } from '../helpers/token/removerToken';
 
-export function useGet<TResponse>(baseUrl: string) {
+export function useGet<TResponse>(endpoint: string) {
   const navigate = useNavigate();
   const { setLoading } = useLoading();
 
@@ -13,6 +13,8 @@ export function useGet<TResponse>(baseUrl: string) {
   const [error, setError] = useState<string | null>(null);
 
   const get = useCallback(async (id: string | number = '', queryParams?: string): Promise<TResponse | null> => {
+    
+    const baseUrl = "https://backend-142395531834.southamerica-east1.run.app"
     setLoading(true);
     setError(null);
 
@@ -22,14 +24,14 @@ export function useGet<TResponse>(baseUrl: string) {
       let url = "";
 
       if(queryParams){
-        url = `${baseUrl}${queryParams}`;
+        url = `${endpoint}${queryParams}`;
 
       }else{
-        url = id ? `${baseUrl}/${id}` : baseUrl;
+        url = id ? `${endpoint}/${id}` : endpoint;
       }
 
 
-      const response = await axios.get<TResponse>(url, {
+      const response = await axios.get<TResponse>(`${baseUrl}${url}`, {
         headers: {
           'Authorization': `Bearer ${tokenLocal}`
         }
@@ -49,7 +51,7 @@ export function useGet<TResponse>(baseUrl: string) {
     } finally {
       setLoading(false);
     }
-  }, [baseUrl, setLoading]);
+  }, [endpoint, setLoading]);
 
   return { get, data, error };
 }

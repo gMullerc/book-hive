@@ -5,7 +5,7 @@ import { recuperarToken } from '../helpers/token/recuperarToken';
 import { useNavigate } from 'react-router-dom';
 import { removerToken } from '../helpers/token/removerToken';
 
-export function usePut<TRequest, TResponse>(url: string) {
+export function usePut<TRequest, TResponse>(endpoint: string) {
   const navigate = useNavigate();
   const { setLoading } = useLoading();
 
@@ -13,12 +13,14 @@ export function usePut<TRequest, TResponse>(url: string) {
   const [error, setError] = useState<string | null>(null);
 
   const put = useCallback(async (body: TRequest): Promise<TResponse | null> => {
+    
+    const baseUrl = "https://backend-142395531834.southamerica-east1.run.app"
     setLoading(true);
     setError(null);
 
     try {
       const tokenLocal = recuperarToken();
-      const response = await axios.put<TResponse>(url, body, {
+      const response = await axios.put<TResponse>(`${baseUrl}${endpoint}`, body, {
         headers: {
           'Authorization': `Bearer ${tokenLocal}`
         }
@@ -37,7 +39,7 @@ export function usePut<TRequest, TResponse>(url: string) {
     } finally {
       setLoading(false);
     }
-  }, [url, setLoading]);
+  }, [endpoint, setLoading]);
 
   return { put, data, error };
 }

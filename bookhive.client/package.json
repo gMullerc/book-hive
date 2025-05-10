@@ -7,7 +7,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docker:clean": "docker rm -vf $(docker ps -aq) && docker rmi -f $(docker images -aq)",
+    "docker:build": "docker buildx build --platform linux/amd64 --no-cache -t gcr.io/bookhive.client .",
+    "docker:run": "docker run --name bookhive.client -p 8080:80 -d gcr.io/bookhive.client",
+    "docker:tag": "docker tag gcr.io/bookhive.client gcr.io/enhanced-prism-457700-m9/bookhive.client:latest",
+    "docker:push": "docker push gcr.io/enhanced-prism-457700-m9/bookhive.client:latest",
+    "docker:deploy": "gcloud run deploy bookhive-client --image gcr.io/enhanced-prism-457700-m9/bookhive.client:latest --platform managed --region us-central1 --allow-unauthenticated",
+    "docker:release": "npm run docker:build && npm run docker:tag && npm run docker:push && npm run docker:deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

@@ -36,6 +36,16 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers(options => {
     options.Filters.Add(new AuthorizeFilter());
 });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowBookHiveClient", policy =>
+    {
+        policy.WithOrigins("https://bookhive-client-142395531834.us-central1.run.app") 
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
 builder.Services.AddServicesByConvention(typeof(Program).Assembly);
 builder.Services.AddRepositoriesByConvention(typeof(Program).Assembly);
 builder.Services.AddClientsByConvention(typeof(Program).Assembly);
@@ -46,6 +56,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 var app = builder.Build();
 
@@ -61,12 +75,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("AllowBookHiveClient");
 app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapFallbackToFile("index.html");
+// app.MapFallbackToFile("index.html");
 
 app.Run();
 
