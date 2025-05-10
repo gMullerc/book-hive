@@ -14,7 +14,7 @@ export function usePut<TRequest, TResponse>(endpoint: string) {
 
   const put = useCallback(async (body: TRequest): Promise<TResponse | null> => {
     
-    const baseUrl = "https://backend-142395531834.southamerica-east1.run.app"
+    const baseUrl = import.meta.env.VITE_BACKEND_URL;
     setLoading(true);
     setError(null);
 

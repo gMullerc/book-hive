@@ -6,7 +6,7 @@ import { removerToken } from '../helpers/token/removerToken';
 import { useNavigate } from 'react-router-dom';
 
 export function usePost<TRequest, TResponse>(endpoint: string) {
-  const baseUrl = "https://backend-142395531834.southamerica-east1.run.app"
+  const baseUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
   const { setLoading } = useLoading();
 

@@ -13,8 +13,7 @@ export function useGet<TResponse>(endpoint: string) {
   const [error, setError] = useState<string | null>(null);
 
   const get = useCallback(async (id: string | number = '', queryParams?: string): Promise<TResponse | null> => {
-    
-    const baseUrl = "https://backend-142395531834.southamerica-east1.run.app"
+    const baseUrl = import.meta.env.VITE_BACKEND_URL;
     setLoading(true);
     setError(null);
 
@@ -23,10 +22,10 @@ export function useGet<TResponse>(endpoint: string) {
 
       let url = "";
 
-      if(queryParams){
+      if (queryParams) {
         url = `${endpoint}${queryParams}`;
 
-      }else{
+      } else {
         url = id ? `${endpoint}/${id}` : endpoint;
       }
 
@@ -40,7 +39,7 @@ export function useGet<TResponse>(endpoint: string) {
       setData(response.data);
       return response.data;
     } catch (err: any) {
-      if(err.response.status === 401){
+      if (err.response.status === 401) {
         removerToken();
         navigate("/login");
         return null;
