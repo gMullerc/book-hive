@@ -9,7 +9,8 @@ namespace BookHive.Server.Dtos
          [Required] string Editora,
          [Required] string Isbn,
          [Required] DateOnly DataPublicacao,
-         [Required] CadastroImagemDTO imagem
+         //[Required] CadastroImagemDTO? imagem
+         CadastroImagemDTO? imagem
     );
 
 }
