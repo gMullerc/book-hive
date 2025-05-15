@@ -35,7 +35,7 @@ export function useDelete(baseUrl: string) {
                 navigate("/login");
                 return false;
             }
-            const msg = err.response?.data?.message || 'Erro ao deletar';
+            const msg = err.response?.data?.mensagem || 'Erro ao deletar';
             setError(msg);
             return false;
         } finally {
@@ -43,5 +43,5 @@ export function useDelete(baseUrl: string) {
         }
     }, [baseUrl, setLoading]);
 
-    return { del, error, success };
+    return { del, error, success, setError };
 }

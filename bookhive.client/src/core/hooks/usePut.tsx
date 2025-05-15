@@ -10,25 +10,29 @@ export function usePut<TRequest, TResponse>(url: string) {
   const { setLoading } = useLoading();
 
   const [data, setData] = useState<TResponse | null>(null);
-    const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-    const [success, setSuccess] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
-  const put = useCallback(async (body: TRequest): Promise<TResponse | null> => {
+  const put = useCallback(async (body?: TRequest, id?: string | number): Promise<TResponse | null> => {
     setLoading(true);
-      setError(null);
+    setError(null);
 
-      setSuccess(false);
+    setSuccess(false);
 
     try {
       const tokenLocal = recuperarToken();
-      const response = await axios.put<TResponse>(url, body, {
+      let urlRequisicao = url;
+      if (id) {
+        urlRequisicao = `${url}/${id}`
+      }
+      const response = await axios.put<TResponse>(urlRequisicao, body, {
         headers: {
           'Authorization': `Bearer ${tokenLocal}`
         }
       });
-        setData(response.data);
-        setSuccess(true);
+      setData(response.data);
+      setSuccess(true);
       return response.data;
     } catch (err: any) {
       if (err.response.status === 401) {
@@ -36,13 +40,13 @@ export function usePut<TRequest, TResponse>(url: string) {
         navigate("/login");
         return null;
       }
-      const msg = err.response?.data?.message || 'Erro ao atualizar dados';
-        setError(msg);
+      const msg = err.response?.data?.mensagem || 'Erro ao atualizar dados';
+      setError(msg);
       return null;
     } finally {
       setLoading(false);
     }
   }, [url, setLoading]);
 
-    return { put, data, error, success, setSuccess };
+  return { put, data, error, success, setSuccess, setError };
 }

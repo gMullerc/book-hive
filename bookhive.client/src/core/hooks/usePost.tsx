@@ -14,7 +14,7 @@ export function usePost<TRequest, TResponse>(url: string) {
   
   const [success, setSuccess] = useState<boolean>(false);
 
-  const post = useCallback(async (body: TRequest): Promise<TResponse | null> => {
+  const post = useCallback(async (body?: TRequest, id?: string | number): Promise<TResponse | null> => {
     setLoading(true);
     setError(null);
 
@@ -22,7 +22,12 @@ export function usePost<TRequest, TResponse>(url: string) {
 
     try {
       const tokenLocal = recuperarToken();
-      const response = await axios.post<TResponse>(url, body, {
+
+      let urlRequisicao = url;
+      if (id) {
+        urlRequisicao = `${url}/${id}`
+      }
+      const response = await axios.post<TResponse>(urlRequisicao, body, {
         headers: {
           'Authorization': `Bearer ${tokenLocal}`
         }
@@ -44,5 +49,5 @@ export function usePost<TRequest, TResponse>(url: string) {
     }
   }, [url, setLoading]);
 
-  return { post, data, error, success, setSuccess };
+  return { post, data, error, success, setSuccess , setError};
 }

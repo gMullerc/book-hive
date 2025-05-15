@@ -39,6 +39,9 @@ export const CardLivro = ({ livro, onClick }: Props) => {
                         <Typography variant="body2" color="text.secondary">
                             <strong>Publicado em:</strong> {formatarDataDiaMesAno(livro.dataPublicacao)}
                         </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            <strong>Situacao:</strong> {livro.situacaoLivro?.descricao}
+                        </Typography>
                     </CardContent>
                 </Box>
             </CardActionArea>
