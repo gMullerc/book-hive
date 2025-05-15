@@ -15,12 +15,26 @@ namespace BookHive.Server.Controllers {
         [HttpPost("emprestar/{idLivro}")]
         public IActionResult Emprestar([FromRoute] int idLivro) {
 
-            string? authorizationHeader = Request.Headers["Authorization"].FirstOrDefault();
-
-            var token = authorizationHeader!.Replace("Bearer ", "");
+            string token = RecuperarToken();
 
             _emprestimoService.Emprestar(idLivro, token);
             return NoContent();
+        }
+
+        [HttpPut("devolver/{idLivro}")]
+        public IActionResult Devolver([FromRoute] int idLivro)
+        {
+            string token = RecuperarToken();
+
+            _emprestimoService.Devolver(idLivro, token);
+            return NoContent();
+        }
+
+        private string RecuperarToken() {
+            string? authorizationHeader = Request.Headers["Authorization"].FirstOrDefault();
+
+            var token = authorizationHeader!.Replace("Bearer ", "");
+            return token;
         }
     }
 }
