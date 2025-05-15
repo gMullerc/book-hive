@@ -10,6 +10,7 @@ namespace BookHive.Server.Repositories.Interfaces
         Livro BuscarPorIdLivro(int id);
         Livro? BuscarPorIsbnLivro(string isbn);
         IQueryable<Livro> BuscarLivros();
+        void Excluir(Livro livro);
 
     }
 }
