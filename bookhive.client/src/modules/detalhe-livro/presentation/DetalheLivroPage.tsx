@@ -1,13 +1,13 @@
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Livro } from "../../../core/@types/Livro";
 import { useGet } from "../../../core/hooks/useGet";
 import { IconButton } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DeleteIcon from "@mui/icons-material/Delete";
-
+import Button from "@mui/material/Button";
 import { Grid, Paper, Box, Card, CardContent, CardMedia, Typography, Divider, useTheme } from "@mui/material";
  
 
@@ -18,6 +18,7 @@ export const DetalheLivroPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const theme = useTheme();
+  
     const { get, error, data } = useGet<Livro>("/api/livro/BuscarPorId");
     const { del , error: erroDeletarLivro } = useDelete("/api/livro/Excluir");
 
@@ -46,7 +47,6 @@ export const DetalheLivroPage = () => {
     return (
         <>
             <Grid container justifyContent="center" alignItems="center" >
-
                 {livro && (
 
                     <Grid container justifyContent="center">
@@ -56,12 +56,13 @@ export const DetalheLivroPage = () => {
                                     <Typography variant="h5" align="center" color="primary" gutterBottom>
                                         {livro.titulo}
                                     </Typography>
+                                    
 
                                     <Grid container spacing={4} direction="row" alignItems="flex-start">
                                         <Grid size={{ xs: 12, md: 4 }} display="flex" justifyContent="center">
                                             <CardMedia
                                                 component="img"
-                                                sx={{ width: 200, height: 300, objectFit: 'cover', borderRadius: 2 }}
+                                                sx={{ width: 100, height: 200, objectFit: 'scale-down', borderRadius: 2 }}
                                                 image={`https://storage.googleapis.com/${livro.caminhoImagem}`}
                                                 title={livro.nomeImagem}
                                             />
@@ -101,11 +102,18 @@ export const DetalheLivroPage = () => {
                                     >
                                         <DeleteIcon />
                                     </IconButton>
+
+                                    <Grid container justifyContent="flex-end" mb={1}>
+                                        <Button variant="contained" color="primary" onClick={() => navigate(`/atualiza/livro/${livro.id}`)}>
+                                            Atualizar informações do Livro
+                                        </Button>
+                                    </Grid>
                                 </Paper>
                             </Grid>
                         )}
                     </Grid>
                 )}
+
             </Grid>
         </>
     );

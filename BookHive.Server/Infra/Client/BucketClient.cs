@@ -1,5 +1,6 @@
 using System.Text;
 using BookHive.Server.Dtos;
+using BookHive.Server.Exceptions;
 using BookHive.Server.Infra.Client.Interfaces;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
@@ -16,6 +17,7 @@ namespace BookHive.Server.Infra.Client
 
         public async Task<string> UploadImagem(CadastroImagemDTO imagem, string uuid)
         {
+
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration), "Configuration cannot be null.");
 
@@ -28,16 +30,25 @@ namespace BookHive.Server.Infra.Client
             if (string.IsNullOrWhiteSpace(bucket))
                 throw new ArgumentException("GCPCredentials:BucketName is not configured properly.");
 
-            var googleCredential = GoogleCredential.FromFile(credentialFile);
-            var storage = StorageClient.Create(googleCredential);
-            var bucketName = bucket;
- 
-            byte[] byteArray = System.Convert.FromBase64String(imagem.imageBase64);
-            MemoryStream stream = new MemoryStream(byteArray);
-            var contentType = ObterMimeType(imagem.extensaoImagem);
-            await storage.UploadObjectAsync(bucketName, uuid, contentType, stream);
+            try
+            {
+                var googleCredential = GoogleCredential.FromFile(credentialFile);
+                var storage = StorageClient.Create(googleCredential);
+                var bucketName = bucket;
 
-            return bucketName + "/" + uuid;
+                byte[] byteArray = System.Convert.FromBase64String(imagem.imageBase64);
+                MemoryStream stream = new MemoryStream(byteArray);
+                var contentType = ObterMimeType(imagem.extensaoImagem);
+                await storage.UploadObjectAsync(bucketName, uuid, contentType, stream);
+
+                return bucketName + "/" + uuid;
+            }
+            catch (Exception ex)
+            {
+                throw new BadRequestException("Ocorreu um erro ao salvar a imagem: []" + ex);
+
+            }
+                
         }
 
 
