@@ -16,6 +16,8 @@ namespace BookHive.Server.Services
         public string CadastrarUsuario(UsuarioDto usuarioDTO);
         public UsuarioConsultaDto BuscarUsuarioLogado(string? id);
         public string ValidarLogin(LoginDTO usuarioDto);
+
+        public Usuario BuscarUsuarioPorToken(string token);
     }
 
     public class UsuarioService : IUsuarioService
@@ -46,6 +48,25 @@ namespace BookHive.Server.Services
 
             return UsuarioFactory.converterModelParaDto(usuario);
         }
+
+        public Usuario BuscarUsuarioPorToken(string token)
+        {
+            JwtSecurityTokenHandler jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+            JwtSecurityToken jwtSecurityToken = jwtSecurityTokenHandler.ReadJwtToken(token);
+
+            Claim? claim = jwtSecurityToken.Claims.FirstOrDefault(c => c.Type == "nameId");
+
+            if(claim == null) 
+                throw new BadRequestException("Usuário não encontrado.");
+
+            Usuario? usuario = _usuarioRepository.FindUsuarioById(int.Parse(claim.Value));
+
+            if (usuario == null) 
+                throw new BadRequestException("Usuário não encontrado.");
+
+            return usuario;
+        }
+
 
         public string CadastrarUsuario(UsuarioDto usuarioDTO)
         {

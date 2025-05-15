@@ -51,5 +51,5 @@ export function useGet<TResponse>(baseUrl: string) {
     }
   }, [baseUrl, setLoading]);
 
-  return { get, data, error };
+  return { get, data, error, setError, setData };
 }
