@@ -75,7 +75,7 @@ export const DetalheLivroPage = () => {
 
                                     <Grid container justifyContent="flex-end" mb={1}>
                                         <Button variant="contained" color="primary" onClick={() => navigate(`/atualiza/livro/${livro.id}`)}>
-                                            Atualizar informações do Livro
+                                            Atualizar informaÃ§Ãµes do Livro
                                         </Button>
                                     </Grid>
 
