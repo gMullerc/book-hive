@@ -24,9 +24,7 @@ namespace BookHive.Server.Repositories
         public void AtualizarLivro(Livro livro)
         {
             _context.Livro.Update(livro);
-            _context.SaveChanges();
-
-            //return livro;
+            _context.SaveChanges();         
         }
 
         public Livro BuscarPorIdLivro(int id)

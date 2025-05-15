@@ -52,21 +52,21 @@ namespace BookHive.Server.Services
             if (l == null)
                 throw new BadRequestException("Livro não encontrado");
 
-            // Atualiza os dados diretamente na entidade rastreada
+            
             l.Titulo = livroDto.Titulo;
             l.Autor = livroDto.Autor;
             l.Editora = livroDto.Editora;
             l.Isbn = livroDto.Isbn;
             l.DataPublicacao = livroDto.DataPublicacao;
 
-            // Atualiza a imagem apenas se vier do front
+            
             if (livroDto.imagem is not null && livroDto.imagem.nomeImagem != l.NomeImagem)
             {
                 l.CaminhoImagem = await SalvarImagem(livroDto);
                 l.NomeImagem = livroDto.imagem.nomeImagem;
             }
 
-            //_context.SaveChanges();
+            
             _livroRepository.AtualizarLivro(l);
 
 

@@ -57,9 +57,7 @@ export const AtualizaLivroPage = () => {
             const livroData = getLivro.data;
 
             Object.keys(livroData).forEach((key) => methods.setValue(key as keyof CadastroLivroForm, livroData[key as keyof Livro]));
-            //Object.entries(livroData).forEach(([key, value]) => {
-            //    methods.setValue(key as keyof CadastroLivroForm, value as any);
-            //});
+            
 
         }
     }, [getLivro.data]);
@@ -93,7 +91,7 @@ export const AtualizaLivroPage = () => {
 
     const onSubmit = async (formData: CadastroLivroForm) => {
         try {
-            // Inclui o id e imagem no objeto de atualização
+            
             const payload: any = {
                 ...formData,
                 id: id ?? "", 
@@ -117,10 +115,10 @@ export const AtualizaLivroPage = () => {
 
             console.log("PAYLOAD FINAL", payload)
 
-            // Enviar os dados atualizados para a API
+            
             await put(payload);
 
-            //await put(formData);
+            
         } catch (error) {
             console.error("Erro ao atualizar o livro:", error);
         }
