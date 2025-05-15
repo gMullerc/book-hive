@@ -11,16 +11,24 @@ export function usePut<TRequest, TResponse>(endpoint: string) {
 
   const [data, setData] = useState<TResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<boolean>(false);
 
-  const put = useCallback(async (body: TRequest): Promise<TResponse | null> => {
+  const put = useCallback(async (body?: TRequest, id?: string | number): Promise<TResponse | null> => {
     
     const baseUrl = import.meta.env.VITE_BACKEND_URL;
     setLoading(true);
     setError(null);
+    
+    setSuccess(false);
 
     try {
       const tokenLocal = recuperarToken();
-      const response = await axios.put<TResponse>(`${baseUrl}${endpoint}`, body, {
+      
+      let urlRequisicao = `${baseUrl}${endpoint}`;
+      if (id) {
+        urlRequisicao = `${urlRequisicao}/${id}`
+      }
+      const response = await axios.put<TResponse>(urlRequisicao, body, {
         headers: {
           'Authorization': `Bearer ${tokenLocal}`
         }
@@ -41,5 +49,5 @@ export function usePut<TRequest, TResponse>(endpoint: string) {
     }
   }, [endpoint, setLoading]);
 
-  return { put, data, error };
+  return { put, data, error, success, setError };
 }

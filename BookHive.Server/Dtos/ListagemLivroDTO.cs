@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using BookHive.Server.Models;
 
 namespace BookHive.Server.Dtos
 {
@@ -9,7 +10,8 @@ namespace BookHive.Server.Dtos
         [Required] string Editora,
         [Required] string Isbn,
         [Required] DateOnly DataPublicacao,
-        [Required] string caminhoImagem,
-        string? nomeImagem
+        [Required] string CaminhoImagem,
+        [Required] DominioDto SituacaoLivro,
+        string? NomeImagem
         );
 }

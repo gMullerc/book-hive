@@ -4,7 +4,6 @@ import { useLoading } from '../contexts/LoadingContext';
 import { recuperarToken } from '../helpers/token/recuperarToken';
 import { removerToken } from '../helpers/token/removerToken';
 import { useNavigate } from 'react-router-dom';
-
 export function usePost<TRequest, TResponse>(endpoint: string) {
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ export function usePost<TRequest, TResponse>(endpoint: string) {
   
   const [success, setSuccess] = useState<boolean>(false);
 
-  const post = useCallback(async (body: TRequest): Promise<TResponse | null> => {
+  const post = useCallback(async (body?: TRequest, id?: string | number): Promise<TResponse | null> => {
     setLoading(true);
     setError(null);
 
@@ -23,7 +22,13 @@ export function usePost<TRequest, TResponse>(endpoint: string) {
 
     try {
       const tokenLocal = recuperarToken();
-      const response = await axios.post<TResponse>(`${baseUrl}${endpoint}`, body, {
+
+      let urlRequisicao = `${baseUrl}${endpoint}`;
+      if (id) {
+        urlRequisicao = `${urlRequisicao}/${id}`
+      }
+      
+      const response = await axios.post<TResponse>(urlRequisicao, body, {
         headers: {
           'Authorization': `Bearer ${tokenLocal}`
         }
@@ -45,5 +50,5 @@ export function usePost<TRequest, TResponse>(endpoint: string) {
     }
   }, [endpoint, setLoading]);
 
-  return { post, data, error, success, setSuccess };
+  return { post, data, error, success, setSuccess , setError};
 }

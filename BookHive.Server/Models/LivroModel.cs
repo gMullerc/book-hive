@@ -10,5 +10,6 @@ namespace BookHive.Server.Models
         public required string CaminhoImagem {get; set;}
         public required string NomeImagem {get; set;}
         public required DateOnly DataPublicacao { get; set; }
+        public required Dominio Situacao { get; set; }
     }
 }

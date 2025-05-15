@@ -4,14 +4,17 @@ using BookHive.Server.Factories;
 using BookHive.Server.Infra.Client.Interfaces;
 using BookHive.Server.Models;
 using BookHive.Server.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookHive.Server.Services
 {
     public interface ILivroService
     {
         Task CadastrarLivro(CadastroLivroDto livroDto);
+        Task AtualizarLivro(CadastroLivroDto livroDto);
         ListagemLivroDTO BuscarPorIdLivro(int id);
         PagedResultDto<ListagemLivroDTO> BuscarLivros(PageDto pagination);
+        void Excluir(int id);
 
     }
 
@@ -19,12 +22,18 @@ namespace BookHive.Server.Services
     {
         private readonly ILivroRepository _livroRepository;
 
+        private readonly IEmprestimoRepository _emprestimoRepository;
+
+        private readonly IDominioRepository _dominioRepository;
+
         private readonly IBucketClient _bucketClient;
 
-        public LivroService(ILivroRepository livroRepository, IBucketClient bucketClient)
+        public LivroService(ILivroRepository livroRepository, IBucketClient bucketClient, IDominioRepository dominioRepository, IEmprestimoRepository emprestimoRepository)
         {
             _bucketClient = bucketClient;
             _livroRepository = livroRepository;
+            _dominioRepository = dominioRepository;
+            _emprestimoRepository = emprestimoRepository; 
         }
 
         public async Task CadastrarLivro(CadastroLivroDto livroDto)
@@ -38,10 +47,46 @@ namespace BookHive.Server.Services
 
             string caminhoImagem = await SalvarImagem(livroDto);
 
-            Livro livro = LivroFactory.converterCadastroLivroDtoParaModel(livroDto, caminhoImagem, livroDto?.imagem?.nomeImagem);
+            string v = SituacaoLivro.DISPONIVEL.ToString();
+            Dominio? situacao = _dominioRepository.BuscarDominioPorCodigo(SituacaoLivro.DISPONIVEL.ToString());
+
+            if (situacao == null)
+            {
+                throw new BadRequestException("Ocorreu um erro ao gerar a situação do livro.");
+            }
+
+            Livro livro = LivroFactory.converterCadastroLivroDtoParaModel(livroDto, caminhoImagem, livroDto?.imagem?.nomeImagem, situacao);
 
             _livroRepository.CadastrarLivro(livro);
         }
+
+        public async Task AtualizarLivro(CadastroLivroDto livroDto)
+        {
+            Livro? l = _livroRepository.BuscarPorIdLivro(livroDto.Id.Value);
+
+            if (l == null)
+                throw new BadRequestException("Livro não encontrado");
+
+
+            l.Titulo = livroDto.Titulo;
+            l.Autor = livroDto.Autor;
+            l.Editora = livroDto.Editora;
+            l.Isbn = livroDto.Isbn;
+            l.DataPublicacao = livroDto.DataPublicacao;
+
+
+            if (livroDto.imagem is not null && livroDto.imagem.nomeImagem != l.NomeImagem)
+            {
+                l.CaminhoImagem = await SalvarImagem(livroDto);
+                l.NomeImagem = livroDto.imagem.nomeImagem;
+            }
+
+
+            _livroRepository.AtualizarLivro(l);
+
+
+        }
+
 
         private async Task<string> SalvarImagem(CadastroLivroDto livroDto)
         {
@@ -61,9 +106,10 @@ namespace BookHive.Server.Services
 
         public ListagemLivroDTO BuscarPorIdLivro(int id)
         {
-            var livro = _livroRepository.BuscarPorIdLivro(id);
+            Livro livro = _livroRepository.BuscarPorIdLivro(id);
 
-            if (livro == null) {
+            if (livro == null)
+            {
                 throw new BadRequestException("Livro não encontrado");
             }
 
@@ -93,6 +139,34 @@ namespace BookHive.Server.Services
                 TotalPages: totalPages,
                 Items: livroDtos
             );
+        }
+
+        public void Excluir(int id)
+        {
+            var livro = _livroRepository.BuscarPorIdLivro(id);
+            if (livro == null)
+            {
+                throw new BadRequestException("Livro não encontrado");
+            }
+
+            VerificarSituacaoLivro(livro);
+
+            _livroRepository.Excluir(livro);
+        }
+        private void VerificarSituacaoLivro(Livro livro)
+        {
+
+            if (SituacaoLivro.EMPRESTADO.ToString().Equals(livro.Situacao.Codigo))
+            {
+                throw new BadRequestException("Livro se encontra emprestado.");
+            }
+
+            List<Emprestimo> emprestimos = _emprestimoRepository.BuscarEmprestimosVinculadosAoLivro(livro.Id).ToList();
+
+            if (emprestimos.Any(e => e.DataDevolucao == null))
+            {
+                throw new BadRequestException("Esse livro possui pendências, não pode ser alugado.");
+            }
         }
 
     }

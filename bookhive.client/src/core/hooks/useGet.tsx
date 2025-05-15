@@ -52,5 +52,5 @@ export function useGet<TResponse>(endpoint: string) {
     }
   }, [endpoint, setLoading]);
 
-  return { get, data, error };
+  return { get, data, error, setError, setData };
 }

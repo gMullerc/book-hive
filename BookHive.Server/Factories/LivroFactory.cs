@@ -5,7 +5,7 @@ namespace BookHive.Server.Factories
 {
     public static class LivroFactory
     {
-        public static Livro converterCadastroLivroDtoParaModel(CadastroLivroDto dto, string caminhoImagem, string? nomeImagem)
+        public static Livro converterCadastroLivroDtoParaModel(CadastroLivroDto dto, string caminhoImagem, string? nomeImagem, Dominio situacaoLivro)
         {
             return new Livro
             {
@@ -15,13 +15,14 @@ namespace BookHive.Server.Factories
                 Isbn = dto.Isbn,
                 DataPublicacao = dto.DataPublicacao,
                 CaminhoImagem = caminhoImagem,
-                NomeImagem = nomeImagem
+                NomeImagem = nomeImagem ?? "",
+                Situacao = situacaoLivro,
             };
         }
 
         public static ListagemLivroDTO converterModelParaListagemLivroDto(Livro model)
         {
-            return new ListagemLivroDTO(model.Id, model.Titulo, model.Autor, model.Editora, model.Isbn, model.DataPublicacao, model.CaminhoImagem, model?.NomeImagem);
+            return new ListagemLivroDTO(model.Id, model.Titulo, model.Autor, model.Editora, model.Isbn, model.DataPublicacao, model.CaminhoImagem, DominioFactory.converterModelParaDto(model.Situacao) ,model?.NomeImagem);
         }
 
         public static List<ListagemLivroDTO> converterListModelParaListListagemLivroDto(List<Livro> livros)
