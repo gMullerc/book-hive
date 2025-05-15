@@ -4,12 +4,14 @@ using BookHive.Server.Factories;
 using BookHive.Server.Infra.Client.Interfaces;
 using BookHive.Server.Models;
 using BookHive.Server.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookHive.Server.Services
 {
     public interface ILivroService
     {
         Task CadastrarLivro(CadastroLivroDto livroDto);
+        Task AtualizarLivro(CadastroLivroDto livroDto);
         ListagemLivroDTO BuscarPorIdLivro(int id);
         PagedResultDto<ListagemLivroDTO> BuscarLivros(PageDto pagination);
 
@@ -52,6 +54,34 @@ namespace BookHive.Server.Services
 
             _livroRepository.CadastrarLivro(livro);
         }
+
+        public async Task AtualizarLivro(CadastroLivroDto livroDto)
+        {
+            Livro? l = _livroRepository.BuscarPorIdLivro(livroDto.Id.Value);
+
+            if (l == null)
+                throw new BadRequestException("Livro não encontrado");
+
+            
+            l.Titulo = livroDto.Titulo;
+            l.Autor = livroDto.Autor;
+            l.Editora = livroDto.Editora;
+            l.Isbn = livroDto.Isbn;
+            l.DataPublicacao = livroDto.DataPublicacao;
+
+            
+            if (livroDto.imagem is not null && livroDto.imagem.nomeImagem != l.NomeImagem)
+            {
+                l.CaminhoImagem = await SalvarImagem(livroDto);
+                l.NomeImagem = livroDto.imagem.nomeImagem;
+            }
+
+            
+            _livroRepository.AtualizarLivro(l);
+
+
+        }
+
 
         private async Task<string> SalvarImagem(CadastroLivroDto livroDto)
         {

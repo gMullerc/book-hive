@@ -15,7 +15,7 @@ namespace BookHive.Server.Factories
                 Isbn = dto.Isbn,
                 DataPublicacao = dto.DataPublicacao,
                 CaminhoImagem = caminhoImagem,
-                NomeImagem = nomeImagem,
+                NomeImagem = nomeImagem ?? "",
                 Situacao = situacaoLivro,
             };
         }

@@ -7,6 +7,7 @@ import { ListagemLivrosPage } from './modules/listagem-livros/presentation/Lista
 import { LoginPage } from "./modules/login/presentation/LoginPage";
 import { PerfilPage } from './modules/perfil/presentation/PerfilPage';
 import { CadastroLivroPage } from './modules/cadastro-livro/presentation/CadastroLivroPage';
+import { AtualizaLivroPage } from './modules/cadastro-livro/presentation/AtualizaLivroPage';
 
 export const App = () => {
     const navigate = useNavigate();
@@ -40,6 +41,12 @@ export const App = () => {
             <Route path="/cadastro/livro" element={
                 <DefaultLayout>
                     <CadastroLivroPage />
+                </DefaultLayout>
+            } />
+
+            <Route path="/atualiza/livro/:id" element={
+                <DefaultLayout>
+                    <AtualizaLivroPage />
                 </DefaultLayout>
             } />
 

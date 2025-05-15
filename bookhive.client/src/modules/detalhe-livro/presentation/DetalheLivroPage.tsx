@@ -1,8 +1,9 @@
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Livro } from "../../../core/@types/Livro";
 import { useGet } from "../../../core/hooks/useGet";
+import Button from "@mui/material/Button";
 
 import { Grid, Paper, Box, Card, CardContent, CardMedia, Typography, Divider } from "@mui/material";
 
@@ -11,6 +12,8 @@ import { formatarDataDiaMesAno } from "../../../core/helpers/formatDate";
 
 export const DetalheLivroPage = () => {
     const { id } = useParams();
+
+    const navigate = useNavigate();
 
     const { get, error, data } = useGet<Livro>("/api/livro/BuscarPorId");
 
@@ -29,7 +32,6 @@ export const DetalheLivroPage = () => {
     return (
         <>
             <Grid container justifyContent="center" alignItems="center" >
-
                 {livro && (
 
                     <Grid container justifyContent="center">
@@ -39,12 +41,13 @@ export const DetalheLivroPage = () => {
                                     <Typography variant="h5" align="center" color="primary" gutterBottom>
                                         {livro.titulo}
                                     </Typography>
+                                    
 
                                     <Grid container spacing={4} direction="row" alignItems="flex-start">
                                         <Grid size={{ xs: 12, md: 4 }} display="flex" justifyContent="center">
                                             <CardMedia
                                                 component="img"
-                                                sx={{ width: 200, height: 300, objectFit: 'cover', borderRadius: 2 }}
+                                                sx={{ width: 100, height: 200, objectFit: 'scale-down', borderRadius: 2 }}
                                                 image={`https://storage.googleapis.com/${livro.caminhoImagem}`}
                                                 title={livro.nomeImagem}
                                             />
@@ -69,11 +72,19 @@ export const DetalheLivroPage = () => {
                                             </Typography>
                                         </Grid>
                                     </Grid>
+
+                                    <Grid container justifyContent="flex-end" mb={1}>
+                                        <Button variant="contained" color="primary" onClick={() => navigate(`/atualiza/livro/${livro.id}`)}>
+                                            Atualizar informações do Livro
+                                        </Button>
+                                    </Grid>
+
                                 </Paper>
                             </Grid>
                         )}
                     </Grid>
                 )}
+
             </Grid>
         </>
     );
