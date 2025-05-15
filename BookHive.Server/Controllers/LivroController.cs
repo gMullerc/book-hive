@@ -24,6 +24,16 @@ namespace BookHive.Server.Controllers
             return Ok();
         }
 
+        [HttpPut("atualizar")]
+        public async Task<IActionResult> AtualizarLivro([FromBody] CadastroLivroDto livroDto)
+        {
+
+            await _livroService.AtualizarLivro(livroDto);
+            
+            return Ok();
+            
+        }
+
 
         [HttpGet("BuscarPorId")]
         public ListagemLivroDTO BuscarPorIdLivro([FromQuery] int id)

@@ -10,11 +10,15 @@ export function usePut<TRequest, TResponse>(url: string) {
   const { setLoading } = useLoading();
 
   const [data, setData] = useState<TResponse | null>(null);
-  const [error, setError] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
+
+    const [success, setSuccess] = useState<boolean>(false);
 
   const put = useCallback(async (body: TRequest): Promise<TResponse | null> => {
     setLoading(true);
-    setError(null);
+      setError(null);
+
+      setSuccess(false);
 
     try {
       const tokenLocal = recuperarToken();
@@ -23,7 +27,8 @@ export function usePut<TRequest, TResponse>(url: string) {
           'Authorization': `Bearer ${tokenLocal}`
         }
       });
-      setData(response.data);
+        setData(response.data);
+        setSuccess(true);
       return response.data;
     } catch (err: any) {
       if (err.response.status === 401) {
@@ -32,12 +37,12 @@ export function usePut<TRequest, TResponse>(url: string) {
         return null;
       }
       const msg = err.response?.data?.message || 'Erro ao atualizar dados';
-      setError(msg);
+        setError(msg);
       return null;
     } finally {
       setLoading(false);
     }
   }, [url, setLoading]);
 
-  return { put, data, error };
+    return { put, data, error, success, setSuccess };
 }

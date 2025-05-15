@@ -20,7 +20,13 @@ namespace BookHive.Server.Repositories
             _context.Livro.Add(livro);
             _context.SaveChanges();
         }
-        
+
+        public void AtualizarLivro(Livro livro)
+        {
+            _context.Livro.Update(livro);
+            _context.SaveChanges();         
+        }
+
         public Livro BuscarPorIdLivro(int id)
         {
             return _context.Livro.Find(id);
